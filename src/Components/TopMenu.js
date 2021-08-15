@@ -7,7 +7,11 @@ const useStyles = makeStyles({
     toolbarStyle:{
         display: 'flex',
         justifyContent: 'space-between'
-    }
+    },
+    buttonStyle: {
+        borderColor: 'white',
+        color:'white'
+    },
 })
 
 function TopMenu({categories,  selectedCategory, setSelectedCategory}) {
@@ -26,12 +30,12 @@ function TopMenu({categories,  selectedCategory, setSelectedCategory}) {
 
     return (
         
-        <AppBar>
+        <AppBar position="static">
             <Toolbar className={classes.toolbarStyle}>
                 <Typography variant="h6">
                     MTG Life Calculator
                 </Typography>               
-                <Button  onClick={toggleIsOpen} variant="outlined" color="default">                   
+                <Button  onClick={toggleIsOpen} variant="outlined" className={classes.buttonStyle}>                   
                     {(selectedCategory === null) ?
                         'Select A Format'
                     :

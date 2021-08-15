@@ -27,15 +27,21 @@ const customTheme = createTheme({
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
+  const [numberOfPlayers, setNumberOfPlayers] = useState(0)
+  function AddPlayer(){
+    setNumberOfPlayers(numberOfPlayers + 1)
+  }
 
   return (
     <ThemeProvider theme={customTheme}>
       <div className="App">
+      <TopMenu categories={categories} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}></TopMenu>
         <Container>
-        <Button>
-          Add a player
-        </Button>
-        <TopMenu categories={categories} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}></TopMenu>
+          <Button variant="contained" onClick={AddPlayer} color="primary">
+            Add a player
+          </Button>
+
+          {numberOfPlayers}
         </Container>      
       </div>
     </ThemeProvider>   
