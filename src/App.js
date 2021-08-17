@@ -3,16 +3,11 @@ import { Button, Container, } from '@material-ui/core';
 import {createTheme, ThemeProvider} from '@material-ui/core/styles'
 import TopMenu from './Components/TopMenu';
 import colorCodes from './Components/ColorCodes';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import LifeCounterContainer from './Components/LifeCounterContainer';
+import categories from './Components/Categories';
 
-
-
-const categories = [
-  {id: 0, name:'EDH'},
-  {id: 1, name:'Pauper EDH'},
-  {id: 2, name:'60 Card'},
-  {id: 3, name:'Two-Headed Giant'}
-]
+export const CategoryContext = React.createContext()
 
 const customTheme = createTheme({
   palette: {
@@ -28,22 +23,25 @@ const customTheme = createTheme({
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [numberOfPlayers, setNumberOfPlayers] = useState(0)
+
   function AddPlayer(){
     setNumberOfPlayers(numberOfPlayers + 1)
   }
 
+
   return (
     <ThemeProvider theme={customTheme}>
-      <div className="App">
-      <TopMenu categories={categories} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}></TopMenu>
-        <Container>
-          <Button variant="contained" onClick={AddPlayer} color="primary">
-            Add a player
-          </Button>
-
-          {numberOfPlayers}
-        </Container>      
-      </div>
+      <CategoryContext.Provider value={selectedCategory}>
+        <div className="App">
+        <TopMenu categories={categories} setSelectedCategory={setSelectedCategory}></TopMenu>
+          <Container>
+            <Button variant="contained" onClick={AddPlayer} disabled={selectedCategory === null ? true : false} style={{margin:10}} color="primary">
+              Add a player
+            </Button>
+            <LifeCounterContainer numberOfPlayers={numberOfPlayers} setNumberOfPlayers={setNumberOfPlayers}/>
+          </Container>      
+        </div>
+      </CategoryContext.Provider>
     </ThemeProvider>   
   );
 }

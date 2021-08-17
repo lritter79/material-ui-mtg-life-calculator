@@ -1,7 +1,9 @@
 import { AppBar, Toolbar, Menu, MenuItem, Button, Typography } from '@material-ui/core';
 //import { Menu as MenuIcon } from '@material-ui/icons';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { CategoryContext } from '../App';
 import { makeStyles} from '@material-ui/core/styles'
+
 
 const useStyles = makeStyles({
     toolbarStyle:{
@@ -14,7 +16,8 @@ const useStyles = makeStyles({
     },
 })
 
-function TopMenu({categories,  selectedCategory, setSelectedCategory}) {
+function TopMenu({categories, setSelectedCategory}) {
+    const selectedCategory = useContext(CategoryContext)
     const [anchorEl, setAnchorEl] = useState(null);
     useEffect(() => console.log(selectedCategory?.name), [selectedCategory]);
     //const [isOpen, setIsOpen] = useState(false)
