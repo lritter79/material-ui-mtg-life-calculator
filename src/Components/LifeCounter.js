@@ -12,19 +12,19 @@ const useStyles = makeStyles({
     marginBottom: '3vh'
   },
   blue: {
-    border: `1px solid blue`,
+    border: `0.20em solid blue`,
   },
   green: {
-    border: `1px solid green`,
+    border: `0.20em solid green`,
   },
   red: {
-    border: `1px solid red`,
+    border: `0.20em solid red`,
   },
   yellow: {
-    border: `1px solid yellow`,
+    border: `0.20em solid yellow`,
   },
   white: {
-    border: `1px solid white`,
+    border: `0.20em solid white`,
   },
 })
 
