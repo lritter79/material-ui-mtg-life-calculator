@@ -1,8 +1,9 @@
 import { CategoryContext } from '../App';
 import { useContext, useState, useEffect } from 'react';
-import { Typography, Box } from '@material-ui/core';
+import { Typography, Box, IconButton, NativeSelect } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
+import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 
 
@@ -28,24 +29,41 @@ const useStyles = makeStyles({
   },
 })
 
-function LifeCounter({player, color}){
-  console.log(color)
 
+function LifeCounter({player, color, playerNumber}){
+  const [currentLife, setCurrentLife] = useState(player.lifeTotal)
+  useEffect(() => setCurrentLife(player.lifeTotal),[player])
   const selectedCategory = useContext(CategoryContext)
-  const [startingLife, setStartingLife] = useState(selectedCategory.startingLife)
+  //const [startingLife, setStartingLife] = useState(selectedCategory.startingLife)
+  var items = [];
+  for (var i = 0; i < 100; i++) {
+      // note: we are adding a key prop here to allow react to uniquely identify each
+      // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
+      items.push(<option value={i} key={i}>{i}</option>);
+  }
 
   const classes = useStyles(color)
-  console.log(classes.lifeCounterBox)
-  useEffect(() => {
-    setStartingLife(selectedCategory.startingLife)
-  }, [selectedCategory])
+  //console.log(classes.lifeCounterBox)
+  //useEffect(() => {
+  //  setStartingLife(selectedCategory.startingLife)
+  //}, [selectedCategory])
     return (
         <Box className={`${classes.lifeCounterBox} ${classes[color]}`}>
           <Typography variant='h6'>
-          Player {player + 1}
+            Player {playerNumber}
           </Typography>
-          
-          {startingLife}
+          <div>
+            {currentLife}
+          </div>
+          <IconButton>
+            <AddCircleIcon></AddCircleIcon>
+          </IconButton>
+          <NativeSelect>
+            {items}
+          </NativeSelect>
+          <IconButton>
+            <RemoveCircleIcon></RemoveCircleIcon>
+          </IconButton>
         </Box>
       );
 }

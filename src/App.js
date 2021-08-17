@@ -3,7 +3,7 @@ import { Button, Container, } from '@material-ui/core';
 import {createTheme, ThemeProvider} from '@material-ui/core/styles'
 import TopMenu from './Components/TopMenu';
 import colorCodes from './Components/ColorCodes';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LifeCounterContainer from './Components/LifeCounterContainer';
 import categories from './Components/Categories';
 
@@ -22,12 +22,23 @@ const customTheme = createTheme({
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
-  const [numberOfPlayers, setNumberOfPlayers] = useState(0)
+  const [players, setPlayers] = useState([])
 
   function AddPlayer(){
-    setNumberOfPlayers(numberOfPlayers + 1)
+    let newPlayer = {
+      lifeTotal: selectedCategory.startingLife,
+      commanderDamage: selectedCategory.maxCommanderDamage
+    }
+    console.log(players)
+    setPlayers(prev => [...prev, newPlayer])
   }
 
+  useEffect(() => {
+    setPlayers(prev => prev.map(player => ({
+      lifeTotal: selectedCategory.startingLife,
+      commanderDamage: selectedCategory.maxCommanderDamage
+    })))
+  }, [selectedCategory])
 
   return (
     <ThemeProvider theme={customTheme}>
@@ -38,7 +49,7 @@ function App() {
             <Button variant="contained" onClick={AddPlayer} disabled={selectedCategory === null ? true : false} style={{margin:10}} color="primary">
               Add a player
             </Button>
-            <LifeCounterContainer numberOfPlayers={numberOfPlayers} setNumberOfPlayers={setNumberOfPlayers}/>
+            <LifeCounterContainer players={players} setNumberOfPlayers={setPlayers}/>
           </Container>      
         </div>
       </CategoryContext.Provider>
