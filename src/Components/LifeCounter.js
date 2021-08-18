@@ -60,6 +60,11 @@ function LifeCounter({player, color, playerNumber}){
     setCurrentLife(+currentLife + +amountToAddOrSubtract)
   }
 
+  const subtractLife = (event) => {
+    //for the additional '+' see https://stackoverflow.com/questions/14496531/adding-two-numbers-concatenates-them-instead-of-calculating-the-sum
+    setCurrentLife(+currentLife - +amountToAddOrSubtract)
+  }
+
   var items = [];
   for (var i = 0; i < 101; i++) {
       // note: we are adding a key prop here to allow react to uniquely identify each
@@ -89,7 +94,7 @@ function LifeCounter({player, color, playerNumber}){
           >
             {items}
           </NativeSelect>
-          <IconButton className={`${classes.button}`}>
+          <IconButton className={`${classes.button}`} onClick={subtractLife}>
             <RemoveCircleIcon fontSize="inherit" className={`${classes.subtractLife}`}></RemoveCircleIcon>
           </IconButton>
         </Box>
