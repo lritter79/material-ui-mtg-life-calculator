@@ -18,7 +18,40 @@ const customTheme = createTheme({
       main: colorCodes.brown.hsl,
     }
   },
-});
+
+})
+
+//customTheme.typography.h6 = {
+  //fontSize: '1rem',
+  //'@media (min-width:600px)': {
+  //  fontSize: '1.5rem',
+  //},
+  //[customTheme.breakpoints.down('lg')]: {
+    //fontSize: '1rem',
+  //},
+//}
+
+const getColorFromPlayerNumber = (player) => {
+  console.log(player)
+  switch(player) {
+      case 0:
+        return 'blue'
+      case 1:
+        return 'red'
+      case 2:
+        return 'green'
+      case 3: 
+        return 'yellow'
+      case 4: 
+        return 'black'
+      case 5: 
+        return 'pink'
+      case 6: 
+        return 'orange'
+      default:
+        return 'white'
+  } 
+}
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null)
@@ -27,9 +60,9 @@ function App() {
   function AddPlayer(){
     let newPlayer = {
       lifeTotal: selectedCategory.startingLife,
-      commanderDamage: selectedCategory.maxCommanderDamage
+      commanderDamage: selectedCategory.maxCommanderDamage,
+      color: getColorFromPlayerNumber(players.length)
     }
-    console.log(players)
     setPlayers(prev => [...prev, newPlayer])
   }
 

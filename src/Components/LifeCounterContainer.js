@@ -1,21 +1,7 @@
 import LifeCounter from './LifeCounter';
 
 
-const getColorFromPlayerNumber = (player) => {
-  console.log(player)
-  switch(player) {
-      case 0:
-        return 'blue'
-      case 1:
-        return 'red'
-      case 2:
-        return 'green'
-      case 3: 
-        return 'yellow'
-      default:
-        return 'white'
-  } 
-}
+
 
 function LifeCounterContainer({players, setPlayers}){
   //const [players, setPlayers] = useState([])
@@ -31,7 +17,7 @@ function LifeCounterContainer({players, setPlayers}){
       return (
         <div>
           {players.map((player, index) =>
-            <LifeCounter key={index} color={getColorFromPlayerNumber(index)} playerNumber={index+1} player={player} />
+            <LifeCounter key={index} playerNumber={index+1} player={player} />
           )}
         </div>
       );
