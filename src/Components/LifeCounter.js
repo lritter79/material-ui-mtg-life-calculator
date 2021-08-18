@@ -7,7 +7,16 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+    //how to set break points in styles
+    fontSize: 'xxx-large',
+
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 'xx-large',
+    }
+  },
   lifeCounterBox: {    
     borderRadius: '10px',
     marginBottom: '3vh'
@@ -27,16 +36,32 @@ const useStyles = makeStyles({
   white: {
     border: `0.20em solid white`,
   },
-})
+  addLife: {
+    color: 'green'
+  },
+  subtractLife:{
+    color: 'red'
+  }
+}))
 
 
 function LifeCounter({player, color, playerNumber}){
   const [currentLife, setCurrentLife] = useState(player.lifeTotal)
   useEffect(() => setCurrentLife(player.lifeTotal),[player])
   const selectedCategory = useContext(CategoryContext)
+  const [amountToAddOrSubtract, setAmountToAddOrSubtract] = useState(0)
   //const [startingLife, setStartingLife] = useState(selectedCategory.startingLife)
+  const handleChange = (event) => {
+    setAmountToAddOrSubtract(event.target.value);
+  }
+
+  const addLife = (event) => {
+    //for the additional '+' see https://stackoverflow.com/questions/14496531/adding-two-numbers-concatenates-them-instead-of-calculating-the-sum
+    setCurrentLife(+currentLife + +amountToAddOrSubtract)
+  }
+
   var items = [];
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 101; i++) {
       // note: we are adding a key prop here to allow react to uniquely identify each
       // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
       items.push(<option value={i} key={i}>{i}</option>);
@@ -55,14 +80,17 @@ function LifeCounter({player, color, playerNumber}){
           <div>
             {currentLife}
           </div>
-          <IconButton>
-            <AddCircleIcon></AddCircleIcon>
+          <IconButton className={`${classes.button}`} onClick={addLife}>
+            <AddCircleIcon fontSize="inherit" className={`${classes.addLife}`}></AddCircleIcon>
           </IconButton>
-          <NativeSelect>
+          <NativeSelect 
+            value={amountToAddOrSubtract}
+            onChange={handleChange}
+          >
             {items}
           </NativeSelect>
-          <IconButton>
-            <RemoveCircleIcon></RemoveCircleIcon>
+          <IconButton className={`${classes.button}`}>
+            <RemoveCircleIcon fontSize="inherit" className={`${classes.subtractLife}`}></RemoveCircleIcon>
           </IconButton>
         </Box>
       );
