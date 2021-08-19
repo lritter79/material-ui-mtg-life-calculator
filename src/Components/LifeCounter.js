@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme => ({
   },
   lifeCounterBox: {    
     borderRadius: '10px',
-    marginBottom: '3vh'
+    marginBottom: '3vh',
+    boxShadow: '0px 4px 5px 0px rgb(0 0 0 / 14%), 4px 4px 5px 0px rgb(0 0 0 / 14%)'
   },
   blue: {
     border: `0.20em solid blue`,
@@ -95,7 +96,7 @@ function LifeCounter({player, playerNumber}){
   //}, [selectedCategory])
     return (
         <Box className={`${classes.lifeCounterBox} ${classes[color]}`}>
-          <Typography variant='h6' className={classes.h6}>
+          <Typography variant='h6' className={classes.h6} gutterBottom>
             Player {playerNumber}
           </Typography>
           <div>
