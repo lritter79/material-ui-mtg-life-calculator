@@ -4,7 +4,7 @@ import { Typography, Box, IconButton, NativeSelect } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-
+import { Clear } from '@material-ui/icons';
 
 
 const useStyles = makeStyles(theme => ({
@@ -18,6 +18,11 @@ const useStyles = makeStyles(theme => ({
 
     [theme.breakpoints.down("sm")]: {
       fontSize: 'xx-large',
+    }
+  },
+  close: {
+    '&:hover': {
+      color:'red',
     }
   },
   lifeCounterBox: {    
@@ -96,6 +101,9 @@ function LifeCounter({player, playerNumber}){
   //}, [selectedCategory])
     return (
         <Box className={`${classes.lifeCounterBox} ${classes[color]}`}>
+          <IconButton className={`${classes.button} ${classes.close}`}>
+            <Clear className={`${classes.subtractLife}`}></Clear>
+          </IconButton>
           <Typography variant='h6' className={classes.h6} gutterBottom>
             Player {playerNumber}
           </Typography>
