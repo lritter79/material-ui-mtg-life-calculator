@@ -105,7 +105,7 @@ function LifeCounter({player, playerNumber}){
             <Clear className={`${classes.subtractLife}`}></Clear>
           </IconButton>
           <Typography variant='h6' className={classes.h6} gutterBottom>
-            Player {playerNumber}
+            {player.name}
           </Typography>
           <div>
             {currentLife}

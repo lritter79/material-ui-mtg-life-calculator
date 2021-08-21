@@ -34,7 +34,7 @@ function TopMenu({categories, setSelectedCategory}) {
     return (
         
         <AppBar position="static">
-            <Toolbar className={classes.toolbarStyle}>
+            <Toolbar className={`${classes.toolbarStyle} ${classes.buttonStyle}`}>
                 <Typography variant="h6">
                     MTG Life Calculator
                 </Typography>               
