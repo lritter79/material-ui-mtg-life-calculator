@@ -113,7 +113,7 @@ function LifeCounter({player, playerNumber, setPlayers}){
   //  setStartingLife(selectedCategory.startingLife)
   //}, [selectedCategory])
     return (
-      <Grid item>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
         <Box className={`${classes.lifeCounterBox} ${classes[color]}`}>
           <IconButton onClick={handleDelete} className={`${classes.button} ${classes.close}`}>
             <Clear className={`${classes.subtractLife}`}></Clear>
