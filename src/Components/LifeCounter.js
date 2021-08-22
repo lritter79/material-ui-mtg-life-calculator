@@ -1,6 +1,6 @@
 import { CategoryContext } from '../App';
 import { useContext, useState, useEffect } from 'react';
-import { Typography, Box, IconButton, NativeSelect } from '@material-ui/core';
+import { Typography, Box, IconButton, NativeSelect, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -113,6 +113,7 @@ function LifeCounter({player, playerNumber, setPlayers}){
   //  setStartingLife(selectedCategory.startingLife)
   //}, [selectedCategory])
     return (
+      <Grid item>
         <Box className={`${classes.lifeCounterBox} ${classes[color]}`}>
           <IconButton onClick={handleDelete} className={`${classes.button} ${classes.close}`}>
             <Clear className={`${classes.subtractLife}`}></Clear>
@@ -140,6 +141,7 @@ function LifeCounter({player, playerNumber, setPlayers}){
             <CommanderDamageRadioGroup amountToAddOrSubtract={amountToAddOrSubtract} player={player} currentLife={currentLife}></CommanderDamageRadioGroup>
           }         
         </Box>
+      </Grid>       
       );
 }
 

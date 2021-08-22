@@ -1,6 +1,6 @@
 import LifeCounter from './LifeCounter';
-
-
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
 
 
 function LifeCounterContainer({players, setPlayers}){
@@ -15,11 +15,11 @@ function LifeCounterContainer({players, setPlayers}){
   //}
   //console.log(players)
       return (
-        <div>
+        <Grid container>
           {players.map((player, index) =>
             <LifeCounter key={index} playerNumber={index} setPlayers={setPlayers} player={player} />
           )}
-        </div>
+        </Grid>
       );
     
     
