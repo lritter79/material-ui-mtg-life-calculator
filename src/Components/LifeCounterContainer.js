@@ -17,7 +17,7 @@ function LifeCounterContainer({players, setPlayers}){
       return (
         <div>
           {players.map((player, index) =>
-            <LifeCounter key={index} playerNumber={index+1} player={player} />
+            <LifeCounter key={index} playerNumber={index} setPlayers={setPlayers} player={player} />
           )}
         </div>
       );

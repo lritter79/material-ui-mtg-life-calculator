@@ -3,11 +3,12 @@ import { Container } from '@material-ui/core';
 import {createTheme, ThemeProvider} from '@material-ui/core/styles'
 import TopMenu from './Components/TopMenu';
 import colorCodes from './Components/ColorCodes';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import LifeCounterContainer from './Components/LifeCounterContainer';
 import AddPlayerForm from './Components/AddPlayerForm';
 import categories from './Components/Categories';
 import { brown } from '@material-ui/core/colors';
+import useSessionStorage from './Components/Functions/UseSessionStorage';
 
 export const CategoryContext = React.createContext()
 export const PlayersContext = React.createContext()
@@ -35,8 +36,8 @@ const customTheme = createTheme({
 
 
 function App() {
-  const [selectedCategory, setSelectedCategory] = useState(null)
-  const [players, setPlayers] = useState([])
+  const [selectedCategory, setSelectedCategory] = useSessionStorage('category', null)
+  const [players, setPlayers] = useSessionStorage('players', [])
   
 
   useEffect(() => {
@@ -59,7 +60,7 @@ function App() {
             <TopMenu categories={categories} setSelectedCategory={setSelectedCategory}></TopMenu>
             <Container>
               <AddPlayerForm setPlayers={setPlayers} players={players} />
-              <LifeCounterContainer players={players} setNumberOfPlayers={setPlayers}/>
+              <LifeCounterContainer players={players} setPlayers={setPlayers}/>
             </Container>      
           </div>
         </PlayersContext.Provider>

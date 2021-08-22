@@ -6,7 +6,8 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { Clear } from '@material-ui/icons';
 import CommanderDamageRadioGroup from './CommanderDamageRadioGroup';
-
+import getColorFromPlayerNumber from './Functions/GetColorFromPlayerNumber';
+import { objectPattern } from '@babel/types';
 
 const useStyles = makeStyles(theme => ({
   select: {
@@ -68,15 +69,25 @@ const useStyles = makeStyles(theme => ({
 }))
 
 
-function LifeCounter({player, playerNumber}){
+function LifeCounter({player, playerNumber, setPlayers}){
   const [currentLife, setCurrentLife] = useState(player.lifeTotal)
-  const [color, setColor] = useState(player.color)
+  const color = getColorFromPlayerNumber(playerNumber)
   useEffect(() => setCurrentLife(player.lifeTotal),[player])
   const selectedCategory = useContext(CategoryContext)
   const [amountToAddOrSubtract, setAmountToAddOrSubtract] = useState(0)
   //const [startingLife, setStartingLife] = useState(selectedCategory.startingLife)
   const handleChange = (event) => {
     setAmountToAddOrSubtract(event.target.value);
+  }
+
+  const handleDelete = (event) => {
+      setPlayers(prev => prev.filter(p => p.id !== player.id).map(function(p, i) {
+        //console.log(p)
+        let obj = Object.assign(p, {id: i})
+        //console.log(obj)
+        return obj
+      })
+    )
   }
 
   const addLife = (event) => {
@@ -103,7 +114,7 @@ function LifeCounter({player, playerNumber}){
   //}, [selectedCategory])
     return (
         <Box className={`${classes.lifeCounterBox} ${classes[color]}`}>
-          <IconButton className={`${classes.button} ${classes.close}`}>
+          <IconButton onClick={handleDelete} className={`${classes.button} ${classes.close}`}>
             <Clear className={`${classes.subtractLife}`}></Clear>
           </IconButton>
           <Typography variant='h6' className={classes.h6} gutterBottom>
