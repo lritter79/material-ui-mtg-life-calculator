@@ -10,6 +10,7 @@ import categories from './Components/Categories';
 import { brown } from '@material-ui/core/colors';
 
 export const CategoryContext = React.createContext()
+export const PlayersContext = React.createContext()
 
 const customTheme = createTheme({
   palette: {
@@ -40,21 +41,28 @@ function App() {
 
   useEffect(() => {
     setPlayers(prev => prev.map(player => ({
+      name: player.name,
+      id: player.id,
       lifeTotal: selectedCategory.startingLife,
-      commanderDamage: selectedCategory.maxCommanderDamage
+      commanderDamage: selectedCategory.maxCommanderDamage,
+      color: player.color
     })))
   }, [selectedCategory])
+
+
 
   return (
     <ThemeProvider theme={customTheme}>
       <CategoryContext.Provider value={selectedCategory}>
-        <div className="App">
-        <TopMenu categories={categories} setSelectedCategory={setSelectedCategory}></TopMenu>
-          <Container>
-            <AddPlayerForm setPlayers={setPlayers} players={players} />
-            <LifeCounterContainer players={players} setNumberOfPlayers={setPlayers}/>
-          </Container>      
-        </div>
+        <PlayersContext.Provider value={players}>
+          <div className="App">
+            <TopMenu categories={categories} setSelectedCategory={setSelectedCategory}></TopMenu>
+            <Container>
+              <AddPlayerForm setPlayers={setPlayers} players={players} />
+              <LifeCounterContainer players={players} setNumberOfPlayers={setPlayers}/>
+            </Container>      
+          </div>
+        </PlayersContext.Provider>
       </CategoryContext.Provider>
     </ThemeProvider>   
   );

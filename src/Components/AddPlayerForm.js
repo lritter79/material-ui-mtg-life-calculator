@@ -42,6 +42,7 @@ function AddPlayerForm({players, setPlayers}){
             lifeTotal: selectedCategory.startingLife,
             commanderDamage: selectedCategory.maxCommanderDamage,
             color: getColorFromPlayerNumber(players.length),
+            id: players.length,
             name:playerName
           }
           setPlayers(prev => [...prev, newPlayer])

@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { Clear } from '@material-ui/icons';
+import CommanderDamageRadioGroup from './CommanderDamageRadioGroup';
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,7 +29,8 @@ const useStyles = makeStyles(theme => ({
   lifeCounterBox: {    
     borderRadius: '10px',
     marginBottom: '3vh',
-    boxShadow: '0px 4px 5px 0px rgb(0 0 0 / 14%), 4px 4px 5px 0px rgb(0 0 0 / 14%)'
+    boxShadow: '0px 4px 5px 0px rgb(0 0 0 / 14%), 4px 4px 5px 0px rgb(0 0 0 / 14%)',
+    backgroundColor:'#fafafa'
   },
   blue: {
     border: `0.20em solid blue`,
@@ -123,6 +125,9 @@ function LifeCounter({player, playerNumber}){
           <IconButton className={`${classes.button}`} onClick={subtractLife}>
             <RemoveCircleIcon fontSize="inherit" className={`${classes.subtractLife}`}></RemoveCircleIcon>
           </IconButton>
+          {false &&
+            <CommanderDamageRadioGroup amountToAddOrSubtract={amountToAddOrSubtract} player={player} currentLife={currentLife}></CommanderDamageRadioGroup>
+          }         
         </Box>
       );
 }
