@@ -1,6 +1,6 @@
 import { CategoryContext } from '../App';
 import { useContext, useState, useEffect } from 'react';
-import { Typography, Box, IconButton, NativeSelect, Grid } from '@material-ui/core';
+import { Typography, Box, IconButton, NativeSelect, Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -29,9 +29,10 @@ const useStyles = makeStyles(theme => ({
   },
   lifeCounterBox: {    
     borderRadius: '10px',
-    marginBottom: '3vh',
+    margin: '10px',
     boxShadow: '0px 4px 5px 0px rgb(0 0 0 / 14%), 4px 4px 5px 0px rgb(0 0 0 / 14%)',
-    backgroundColor:'#fafafa'
+    backgroundColor:'#fafafa',
+    borderStyle: 'outset'
   },
   blue: {
     border: `0.20em solid blue`,
@@ -113,8 +114,8 @@ function LifeCounter({player, playerNumber, setPlayers}){
   //  setStartingLife(selectedCategory.startingLife)
   //}, [selectedCategory])
     return (
-      <Grid item xs={12} sm={6} md={4} lg={3}>
-        <Box className={`${classes.lifeCounterBox} ${classes[color]}`}>
+      
+        <Paper className={`${classes.lifeCounterBox} ${classes[color]}`}>
           <IconButton onClick={handleDelete} className={`${classes.button} ${classes.close}`}>
             <Clear className={`${classes.subtractLife}`}></Clear>
           </IconButton>
@@ -140,8 +141,8 @@ function LifeCounter({player, playerNumber, setPlayers}){
           {false &&
             <CommanderDamageRadioGroup amountToAddOrSubtract={amountToAddOrSubtract} player={player} currentLife={currentLife}></CommanderDamageRadioGroup>
           }         
-        </Box>
-      </Grid>       
+        </Paper>
+      
       );
 }
 

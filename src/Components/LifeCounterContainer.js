@@ -17,7 +17,9 @@ function LifeCounterContainer({players, setPlayers}){
       return (
         <Grid container>
           {players.map((player, index) =>
-            <LifeCounter key={index} playerNumber={index} setPlayers={setPlayers} player={player} />
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+              <LifeCounter key={index} playerNumber={index} setPlayers={setPlayers} player={player} />
+            </Grid>
           )}
         </Grid>
       );
