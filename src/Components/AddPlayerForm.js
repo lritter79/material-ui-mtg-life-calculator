@@ -7,27 +7,7 @@ function AddPlayerForm({players, setPlayers}){
     const [playerName, setPlayerName] = useState('')
     const selectedCategory = useContext(CategoryContext)
 
-    const getColorFromPlayerNumber = (player) => {
-        console.log(player)
-        switch(player) {
-            case 0:
-              return 'blue'
-            case 1:
-              return 'red'
-            case 2:
-              return 'green'
-            case 3: 
-              return 'yellow'
-            case 4: 
-              return 'black'
-            case 5: 
-              return 'pink'
-            case 6: 
-              return 'orange'
-            default:
-              return 'white'
-        } 
-      }
+
     const AddPlayer = (e) => {
         e.preventDefault()
         setNameError(false)
@@ -41,7 +21,6 @@ function AddPlayerForm({players, setPlayers}){
           let newPlayer = {
             lifeTotal: selectedCategory.startingLife,
             commanderDamage: selectedCategory.maxCommanderDamage,
-            color: getColorFromPlayerNumber(players.length),
             id: players.length,
             name:playerName
           }
@@ -64,6 +43,7 @@ function AddPlayerForm({players, setPlayers}){
                 value={playerName}
                 onChange={(e) => setPlayerName(e.target.value)}
                 error={nameError}
+                inputProps={{ maxLength: 20 }}
               />  
               <br></br>         
               <Button 

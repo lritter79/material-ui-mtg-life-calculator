@@ -1,6 +1,6 @@
 import { CategoryContext } from '../App';
 import { useContext, useState, useEffect } from 'react';
-import { Typography, Box, IconButton, NativeSelect, Grid, Paper } from '@material-ui/core';
+import { Typography, Box, IconButton, NativeSelect, Grid, Paper, Card, CardHeader, CardContent } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -12,6 +12,10 @@ import { objectPattern } from '@babel/types';
 const useStyles = makeStyles(theme => ({
   select: {
     fontSize:'1.25rem'
+  },
+  title: {
+    textAlign: 'left',
+    wordBreak:'break-all',
   },
   button: {
     margin: theme.spacing(1),
@@ -29,7 +33,6 @@ const useStyles = makeStyles(theme => ({
   },
   lifeCounterBox: {    
     borderRadius: '10px',
-    margin: '10px',
     boxShadow: '0px 4px 5px 0px rgb(0 0 0 / 14%), 4px 4px 5px 0px rgb(0 0 0 / 14%)',
     backgroundColor:'#fafafa',
     borderStyle: 'outset'
@@ -114,35 +117,41 @@ function LifeCounter({player, playerNumber, setPlayers}){
   //  setStartingLife(selectedCategory.startingLife)
   //}, [selectedCategory])
     return (
-      
-        <Paper className={`${classes.lifeCounterBox} ${classes[color]}`}>
+
+      <Card className={`${classes.lifeCounterBox} ${classes[color]}`}>
+      <CardHeader
+        title={player.name}
+        titleTypographyProps={{className: `${classes.title}` }}
+        action={
           <IconButton onClick={handleDelete} className={`${classes.button} ${classes.close}`}>
             <Clear className={`${classes.subtractLife}`}></Clear>
           </IconButton>
-          <Typography variant='h6' className={classes.h6} gutterBottom>
-            {player.name}
-          </Typography>
-          <div>
-            {currentLife}
-          </div>
-          <IconButton className={`${classes.button}`} onClick={addLife}>
-            <AddCircleIcon fontSize="inherit" className={`${classes.addLife}`}></AddCircleIcon>
-          </IconButton>
-          <NativeSelect 
-            value={amountToAddOrSubtract}
-            onChange={handleChange}
-            className={`${classes.select}`}
-          >
-            {items}
-          </NativeSelect>
-          <IconButton className={`${classes.button}`} onClick={subtractLife}>
-            <RemoveCircleIcon fontSize="inherit" className={`${classes.subtractLife}`}></RemoveCircleIcon>
-          </IconButton>
-          {false &&
-            <CommanderDamageRadioGroup amountToAddOrSubtract={amountToAddOrSubtract} player={player} currentLife={currentLife}></CommanderDamageRadioGroup>
-          }         
-        </Paper>
-      
+        }
+      >       
+      </CardHeader>
+      <CardContent>   
+            <div>
+              {currentLife}
+            </div>
+            <IconButton className={`${classes.button}`} onClick={addLife}>
+              <AddCircleIcon fontSize="inherit" className={`${classes.addLife}`}></AddCircleIcon>
+            </IconButton>
+            <NativeSelect 
+              value={amountToAddOrSubtract}
+              onChange={handleChange}
+              className={`${classes.select}`}
+            >
+              {items}
+            </NativeSelect>
+            <IconButton className={`${classes.button}`} onClick={subtractLife}>
+              <RemoveCircleIcon fontSize="inherit" className={`${classes.subtractLife}`}></RemoveCircleIcon>
+            </IconButton>
+            {false &&
+              <CommanderDamageRadioGroup amountToAddOrSubtract={amountToAddOrSubtract} player={player} currentLife={currentLife}></CommanderDamageRadioGroup>
+            }      
+        </CardContent>
+      </Card>
+
       );
 }
 
