@@ -58,14 +58,12 @@ function App() {
     <ThemeProvider theme={customTheme}>
       <CategoryContext.Provider value={selectedCategory}>
         <PlayersContext.Provider value={players}>
-          <TopMenu
-            categories={categories}
-            setSelectedCategory={setSelectedCategory}
-          ></TopMenu>
-          <Container>
-            <AddPlayerForm setPlayers={setPlayers} players={players} />
-            <LifeCounterContainer players={players} setPlayers={setPlayers} />
-          </Container>
+          <Layout>
+            <Container>
+              <AddPlayerForm setPlayers={setPlayers} players={players} />
+              <LifeCounterContainer players={players} setPlayers={setPlayers} />
+            </Container>
+          </Layout>
         </PlayersContext.Provider>
       </CategoryContext.Provider>
     </ThemeProvider>

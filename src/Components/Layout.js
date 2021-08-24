@@ -1,8 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 import CustomDrawer from "./CustomDrawer";
-import TopMenu from "./TopMenu";
-import categories from "./Categories";
 
 const useStyles = makeStyles({
   root: {
@@ -19,7 +17,6 @@ function Layout({ children }) {
   return (
     <div className={classes.root}>
       <CustomDrawer></CustomDrawer>
-      {/** top menu */}
       <div className={classes.page}>{children}</div>
     </div>
   );
