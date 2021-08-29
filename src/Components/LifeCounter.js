@@ -19,75 +19,56 @@ import CommanderDamageRadioGroup from "./CommanderDamageRadioGroup";
 import getColorFromPlayerNumber from "./Functions/GetColorFromPlayerNumber";
 import { objectPattern } from "@babel/types";
 
-const useStyles = makeStyles((theme) => ({
-  select: {
-    fontSize: "1.25rem",
-  },
-  title: {
-    textAlign: "left",
-    wordBreak: "break-all",
-  },
-  button: {
-    margin: theme.spacing(1),
-    //how to set break points in styles
-    fontSize: "xxx-large",
-
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "xx-large",
+const useStyles = makeStyles((theme) => {
+  return {
+    select: {
+      fontSize: "1.25rem",
     },
-  },
-  close: {
-    "&:hover": {
+    title: {
+      textAlign: "left",
+      wordBreak: "break-all",
+    },
+    button: {
+      margin: theme.spacing(1),
+      //how to set break points in styles
+      fontSize: "xxx-large",
+
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "xx-large",
+      },
+    },
+    close: {
+      "&:hover": {
+        color: "red",
+      },
+    },
+    lifeCounterBox: {
+      borderRadius: "10px",
+      boxShadow:
+        "0px 4px 5px 0px rgb(0 0 0 / 14%), 4px 4px 5px 0px rgb(0 0 0 / 14%)",
+      backgroundColor: "#fafafa",
+      borderStyle: "outset",
+      border: ({ color }) => {
+        return `0.20em solid ${color}`;
+      },
+    },
+    content: {
+      textAlign: "center",
+    },
+    addLife: {
+      color: "green",
+    },
+    subtractLife: {
       color: "red",
     },
-  },
-  lifeCounterBox: {
-    borderRadius: "10px",
-    boxShadow:
-      "0px 4px 5px 0px rgb(0 0 0 / 14%), 4px 4px 5px 0px rgb(0 0 0 / 14%)",
-    backgroundColor: "#fafafa",
-    borderStyle: "outset",
-  },
-  content: {
-    textAlign: "center",
-  },
-  blue: {
-    border: `0.20em solid blue`,
-  },
-  green: {
-    border: `0.20em solid green`,
-  },
-  red: {
-    border: `0.20em solid red`,
-  },
-  yellow: {
-    border: `0.20em solid yellow`,
-  },
-  white: {
-    border: `0.20em solid white`,
-  },
-  pink: {
-    border: `0.20em solid pink`,
-  },
-  black: {
-    border: `0.20em solid black`,
-  },
-  orange: {
-    border: `0.20em solid orange`,
-  },
-  addLife: {
-    color: "green",
-  },
-  subtractLife: {
-    color: "red",
-  },
-  h6: {
-    fontSize: "1.5rem",
-  },
-  body1: {
-    fontSize: "1.5rem",
-  },
-}));
+    h6: {
+      fontSize: "1.5rem",
+    },
+    body1: {
+      fontSize: "1.5rem",
+    },
+  };
+});
 
 function LifeCounter({ player, playerNumber, setPlayers }) {
   const [currentLife, setCurrentLife] = useState(player.lifeTotal);
@@ -134,13 +115,13 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
     );
   }
 
-  const classes = useStyles();
+  const classes = useStyles({ color });
   //console.log(classes.lifeCounterBox)
   //useEffect(() => {
   //  setStartingLife(selectedCategory.startingLife)
   //}, [selectedCategory])
   return (
-    <Card className={`${classes.lifeCounterBox} ${classes[color]}`}>
+    <Card className={`${classes.lifeCounterBox}`}>
       <CardHeader
         title={player.name}
         titleTypographyProps={{ className: `${classes.title}` }}

@@ -2,11 +2,13 @@ import { useState, useContext } from "react";
 import { CategoryContext } from "../App";
 import { Button, TextField, makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles({
-  form: {
-    textAlign: "center",
-    padding: "10px",
-  },
+const useStyles = makeStyles((theme) => {
+  return {
+    form: {
+      textAlign: "center",
+      padding: theme.spacing(1),
+    },
+  };
 });
 
 function AddPlayerForm({ players, setPlayers }) {
