@@ -59,10 +59,8 @@ function App() {
       <CategoryContext.Provider value={selectedCategory}>
         <PlayersContext.Provider value={players}>
           <Layout>
-            <Container>
-              <AddPlayerForm setPlayers={setPlayers} players={players} />
-              <LifeCounterContainer players={players} setPlayers={setPlayers} />
-            </Container>
+            <AddPlayerForm setPlayers={setPlayers} players={players} />
+            <LifeCounterContainer players={players} setPlayers={setPlayers} />
           </Layout>
         </PlayersContext.Provider>
       </CategoryContext.Provider>
