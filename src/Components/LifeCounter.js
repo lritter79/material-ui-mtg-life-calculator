@@ -110,11 +110,39 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
   const addLife = (event) => {
     //for the additional '+' see https://stackoverflow.com/questions/14496531/adding-two-numbers-concatenates-them-instead-of-calculating-the-sum
     setCurrentLife(+currentLife + +amountToAddOrSubtract);
+    setPlayers((prev) =>
+      prev.map(function (p, i) {
+        if (player.id === p.id) {
+          console.log(p);
+          let obj = Object.assign(p, {
+            lifeTotal: +currentLife + +amountToAddOrSubtract,
+          });
+          console.log(obj);
+          return obj;
+        } else {
+          return p;
+        }
+      })
+    );
   };
 
   const subtractLife = (event) => {
     //for the additional '+' see https://stackoverflow.com/questions/14496531/adding-two-numbers-concatenates-them-instead-of-calculating-the-sum
     setCurrentLife(+currentLife - +amountToAddOrSubtract);
+    setPlayers((prev) =>
+      prev.map(function (p, i) {
+        if (player.id === p.id) {
+          console.log(p);
+          let obj = Object.assign(p, {
+            lifeTotal: +currentLife - +amountToAddOrSubtract,
+          });
+          console.log(obj);
+          return obj;
+        } else {
+          return p;
+        }
+      })
+    );
   };
 
   var items = [];
