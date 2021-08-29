@@ -10,6 +10,7 @@ import {
   Card,
   CardHeader,
   CardContent,
+  Avatar,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
@@ -66,6 +67,18 @@ const useStyles = makeStyles((theme) => {
     },
     body1: {
       fontSize: "1.5rem",
+    },
+    avatar: {
+      backgroundColor: ({ color }) => {
+        return `${color}`;
+      },
+      color: ({ color }) => {
+        if (color === "yellow") {
+          return "black";
+        } else {
+          return "white";
+        }
+      },
     },
   };
 });
@@ -132,6 +145,11 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
           >
             <Clear className={`${classes.subtractLife}`}></Clear>
           </IconButton>
+        }
+        avatar={
+          <Avatar className={classes.avatar}>
+            {player.name[0].toUpperCase()}
+          </Avatar>
         }
       ></CardHeader>
       <CardContent className={classes.content}>
