@@ -22,7 +22,29 @@ const useStyles = makeStyles((theme) => {
       borderLeft: "60px solid white",
       borderRight: "60px solid white",
     },
-    container: {},
+    container: {
+      position: "relative",
+    },
+    position: {
+      position: "absolute",
+      marginLeft: "auto",
+      marginRight: "auto",
+      left: "0",
+      right: "0",
+      textAlign: "center",
+      top: "40%",
+    },
+    lifeTotal: {
+      fontWeight: "600",
+
+      color: ({ color }) => {
+        if (color === "yellow") {
+          return "black";
+        } else {
+          return "white";
+        }
+      },
+    },
   };
 });
 function LifeDie({ currentLife, color }) {
@@ -30,7 +52,11 @@ function LifeDie({ currentLife, color }) {
   const polygonStyle = { fill: color, strokeWidth: 1 };
   return (
     <div className={classes.container}>
-      <Typography variant="body2">{currentLife}</Typography>
+      <div className={classes.position}>
+        <Typography variant="body2" className={classes.lifeTotal}>
+          {currentLife}
+        </Typography>
+      </div>
       <DieSvg color={color} />
     </div>
   );

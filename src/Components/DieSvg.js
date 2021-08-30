@@ -4,23 +4,23 @@ const useStyles = makeStyles((theme) => {
     container: {
       width: "70%",
 
-      //   [theme.breakpoints.down("lg")]: {
-      //     width: "70%",
-      //   },
-      //   [theme.breakpoints.down("md")]: {
-      //     width: "60%",
-      //   },
-      //   [theme.breakpoints.down("sm")]: {
-      //     width: "50%",
-      //   },
-      //   [theme.breakpoints.down("xs")]: {
-      //     width: "40%",
-      //   },
+      [theme.breakpoints.down("lg")]: {
+        width: "85%",
+      },
+      [theme.breakpoints.down("md")]: {
+        width: "75%",
+      },
+      [theme.breakpoints.down("sm")]: {
+        width: "70%",
+      },
+      [theme.breakpoints.down("xs")]: {
+        width: "55%",
+      },
     },
   };
 });
 function DieSvg({ color }) {
-  const polygonStyle = { fill: color };
+  const polygonStyle = { fill: color, stroke: "black", strokeWidth: 5 };
   const classes = useStyles({ color });
   return (
     <svg className={classes.container} viewBox="0 0 510 510">
