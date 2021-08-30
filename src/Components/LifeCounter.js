@@ -8,6 +8,7 @@ import {
   Card,
   CardHeader,
   CardContent,
+  Typography,
   Avatar,
   CardActions,
 } from "@material-ui/core";
@@ -193,7 +194,7 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
         }
       ></CardHeader>
       <CardContent className={classes.content}>
-        <LifeDie currentLife={currentLife} color={color}></LifeDie>
+        <Typography variant="body2">{currentLife}</Typography>
       </CardContent>
       <CardActions className={classes.action}>
         <IconButton
