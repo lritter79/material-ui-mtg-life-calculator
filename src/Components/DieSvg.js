@@ -1,7 +1,29 @@
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles((theme) => {
+  return {
+    container: {
+      width: "70%",
+
+      //   [theme.breakpoints.down("lg")]: {
+      //     width: "70%",
+      //   },
+      //   [theme.breakpoints.down("md")]: {
+      //     width: "60%",
+      //   },
+      //   [theme.breakpoints.down("sm")]: {
+      //     width: "50%",
+      //   },
+      //   [theme.breakpoints.down("xs")]: {
+      //     width: "40%",
+      //   },
+    },
+  };
+});
 function DieSvg({ color }) {
-  const polygonStyle = { fill: color, strokeWidth: 1 };
+  const polygonStyle = { fill: color };
+  const classes = useStyles({ color });
   return (
-    <svg>
+    <svg className={classes.container} viewBox="0 0 510 510">
       <g style={polygonStyle}>
         <polygon points="386.603,185.92 488.427,347.136 488.427,138.944" />
         <polygon points="218.283,18.645 30.827,125.781 131.883,167.893" />

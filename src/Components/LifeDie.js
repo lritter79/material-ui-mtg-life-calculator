@@ -29,12 +29,9 @@ function LifeDie({ currentLife, color }) {
   const classes = useStyles({ color });
   const polygonStyle = { fill: color, strokeWidth: 1 };
   return (
-    <div>
-      <div className={classes.container}>
-        <DieSvg color={color} />
-      </div>
-
-      <div>{currentLife}</div>
+    <div className={classes.container}>
+      <Typography variant="body2">{currentLife}</Typography>
+      <DieSvg color={color} />
     </div>
   );
 }

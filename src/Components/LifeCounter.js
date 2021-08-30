@@ -22,6 +22,12 @@ import LifeDie from "./LifeDie";
 
 const useStyles = makeStyles((theme) => {
   return {
+    header: {
+      alignItems: "baseline",
+    },
+    action: {
+      justifyContent: "center",
+    },
     select: {
       fontSize: "1.25rem",
     },
@@ -35,7 +41,7 @@ const useStyles = makeStyles((theme) => {
       fontSize: "xxx-large",
 
       [theme.breakpoints.down("sm")]: {
-        fontSize: "xx-large",
+        fontSize: "xxx-large",
       },
     },
     close: {
@@ -55,6 +61,8 @@ const useStyles = makeStyles((theme) => {
     },
     content: {
       textAlign: "center",
+      paddingTop: "0",
+      paddingBottom: "0",
     },
     addLife: {
       color: "green",
@@ -187,7 +195,7 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
       <CardContent className={classes.content}>
         <LifeDie currentLife={currentLife} color={color}></LifeDie>
       </CardContent>
-      <CardActions>
+      <CardActions className={classes.action}>
         <IconButton
           className={`${classes.button}`}
           onClick={addLife}

@@ -25,6 +25,10 @@ const customTheme = createTheme({
   },
 });
 
+customTheme.typography.body2 = {
+  fontSize: "1.5rem",
+  fontWeight: "300",
+};
 //customTheme.typography.h6 = {
 //fontSize: '1rem',
 //'@media (min-width:600px)': {
