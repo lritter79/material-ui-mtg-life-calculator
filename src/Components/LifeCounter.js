@@ -1,8 +1,6 @@
 import { CategoryContext } from "../App";
 import { useContext, useState, useEffect } from "react";
 import {
-  Typography,
-  Box,
   IconButton,
   NativeSelect,
   Grid,
@@ -11,6 +9,7 @@ import {
   CardHeader,
   CardContent,
   Avatar,
+  CardActions,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
@@ -19,6 +18,7 @@ import { Clear } from "@material-ui/icons";
 import CommanderDamageRadioGroup from "./CommanderDamageRadioGroup";
 import getColorFromPlayerNumber from "./Functions/GetColorFromPlayerNumber";
 import { objectPattern } from "@babel/types";
+import LifeDie from "./LifeDie";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -164,6 +164,7 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
   return (
     <Card className={`${classes.lifeCounterBox}`}>
       <CardHeader
+        aria-details=""
         title={player.name}
         titleTypographyProps={{ className: `${classes.title}` }}
         action={
@@ -181,10 +182,14 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
         }
       ></CardHeader>
       <CardContent className={classes.content}>
-        <Typography className={classes.body1} variant="body1">
-          {currentLife}
-        </Typography>
-        <IconButton className={`${classes.button}`} onClick={addLife}>
+        <LifeDie currentLife={currentLife} color={color}></LifeDie>
+      </CardContent>
+      <CardActions>
+        <IconButton
+          className={`${classes.button}`}
+          onClick={addLife}
+          aria-label={`Add ${amountToAddOrSubtract} to the life total of ${player.name}`}
+        >
           <AddCircleIcon
             fontSize="inherit"
             className={`${classes.addLife}`}
@@ -194,10 +199,15 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
           value={amountToAddOrSubtract}
           onChange={handleChange}
           className={`${classes.select}`}
+          aria-label={`Selects the amount to add or subtract from the life total of ${player.name}`}
         >
           {items}
         </NativeSelect>
-        <IconButton className={`${classes.button}`} onClick={subtractLife}>
+        <IconButton
+          className={`${classes.button}`}
+          onClick={subtractLife}
+          aria-label={`Subtract ${amountToAddOrSubtract} from the life total of ${player.name}`}
+        >
           <RemoveCircleIcon
             fontSize="inherit"
             className={`${classes.subtractLife}`}
@@ -210,7 +220,7 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
             currentLife={currentLife}
           ></CommanderDamageRadioGroup>
         )}
-      </CardContent>
+      </CardActions>
     </Card>
   );
 }

@@ -59,6 +59,7 @@ function AddPlayerForm({ players, setPlayers }) {
         disabled={selectedCategory === null ? true : false}
         style={{ margin: 10 }}
         color="primary"
+        aria-label="add-player"
       >
         Add a player
       </Button>
