@@ -86,7 +86,10 @@ const useStyles = makeStyles((theme) => {
 function LifeCounter({ player, playerNumber, setPlayers }) {
   const [currentLife, setCurrentLife] = useState(player.lifeTotal);
   const color = getColorFromPlayerNumber(playerNumber);
-  useEffect(() => setCurrentLife(player.lifeTotal), [player]);
+  useEffect(() => {
+    setCurrentLife(player.lifeTotal);
+    setAmountToAddOrSubtract(0);
+  }, [player]);
   const selectedCategory = useContext(CategoryContext);
   const [amountToAddOrSubtract, setAmountToAddOrSubtract] = useState(0);
   //const [startingLife, setStartingLife] = useState(selectedCategory.startingLife)
