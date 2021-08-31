@@ -3,8 +3,6 @@ import { useContext, useState, useEffect } from "react";
 import {
   IconButton,
   NativeSelect,
-  Grid,
-  Paper,
   Card,
   CardHeader,
   CardContent,
@@ -18,7 +16,6 @@ import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { Clear } from "@material-ui/icons";
 import CommanderDamageRadioGroup from "./CommanderDamageRadioGroup";
 import getColorFromPlayerNumber from "./Functions/GetColorFromPlayerNumber";
-import { objectPattern } from "@babel/types";
 import LifeDie from "./LifeDie";
 
 const useStyles = makeStyles((theme) => {
@@ -194,7 +191,8 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
         }
       ></CardHeader>
       <CardContent className={classes.content}>
-        <Typography variant="body2">{currentLife}</Typography>
+        {/*<Typography variant="body2">{currentLife}</Typography>*/}
+        <LifeDie currentLife={currentLife} color={color} />
       </CardContent>
       <CardActions className={classes.action}>
         <IconButton

@@ -9,8 +9,6 @@ import AddPlayerForm from "./Components/AddPlayerForm";
 import categories from "./Components/Categories";
 import { brown } from "@material-ui/core/colors";
 import useSessionStorage from "./Components/Functions/UseSessionStorage";
-import Layout from "./Components/Layout";
-import CustomDrawer from "./Components/CustomDrawer";
 export const CategoryContext = React.createContext();
 export const PlayersContext = React.createContext();
 
