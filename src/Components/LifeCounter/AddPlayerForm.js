@@ -21,14 +21,14 @@ function AddPlayerForm({ players, setPlayers }) {
     setNameError(false);
 
     console.log(playerName);
-    if (playerName === "") {
+    if (playerName.trim() === "") {
       setNameError(true);
     } else {
       let newPlayer = {
         lifeTotal: selectedCategory.startingLife,
         commanderDamage: selectedCategory.maxCommanderDamage,
         id: players.length,
-        name: playerName,
+        name: playerName.trim(),
       };
       setPlayers((prev) => [...prev, newPlayer]);
       setPlayerName("");
