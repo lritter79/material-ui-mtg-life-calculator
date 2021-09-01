@@ -36,9 +36,11 @@ const useStyles = makeStyles((theme) => {
     },
     lifeTotal: {
       fontWeight: "600",
-
+      [theme.breakpoints.down("xs")]: {
+        color: () => "black",
+      },
       color: ({ color }) => {
-        if (color === "yellow") {
+        if (color === "yellow" || color === "pink") {
           return "black";
         } else {
           return "white";

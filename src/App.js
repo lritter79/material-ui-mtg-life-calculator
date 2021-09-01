@@ -2,13 +2,14 @@ import "./App.css";
 import { Container } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import TopMenu from "./Components/TopMenu";
-import colorCodes from "./Components/ColorCodes";
+import colorCodes from "./Components/LifeCounter/ColorCodes";
 import React, { useEffect } from "react";
-import LifeCounterContainer from "./Components/LifeCounterContainer";
-import AddPlayerForm from "./Components/AddPlayerForm";
-import categories from "./Components/Categories";
+import LifeCounter from "./Components/LifeCounter/LifeCounter";
+import categories from "./Components/LifeCounter/Categories";
 import { brown } from "@material-ui/core/colors";
 import useSessionStorage from "./Components/Functions/UseSessionStorage";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import DiceRoller from "./Components/DiceRoller/DiceRoller";
 export const CategoryContext = React.createContext();
 export const PlayersContext = React.createContext();
 
@@ -27,6 +28,7 @@ customTheme.typography.body2 = {
   fontSize: "1.5rem",
   fontWeight: "300",
 };
+
 //customTheme.typography.h6 = {
 //fontSize: '1rem',
 //'@media (min-width:600px)': {
@@ -60,14 +62,24 @@ function App() {
     <ThemeProvider theme={customTheme}>
       <CategoryContext.Provider value={selectedCategory}>
         <PlayersContext.Provider value={players}>
-          <TopMenu
-            categories={categories}
-            setSelectedCategory={setSelectedCategory}
-          ></TopMenu>
-          <Container>
-            <AddPlayerForm setPlayers={setPlayers} players={players} />
-            <LifeCounterContainer players={players} setPlayers={setPlayers} />
-          </Container>
+          <BrowserRouter>
+            <TopMenu></TopMenu>
+            <Container>
+              <Switch>
+                <Route exact path="/">
+                  <Redirect to="/lifecounter" />
+                </Route>
+                <Route path="/lifecounter">
+                  <LifeCounter
+                    categories={categories}
+                    setSelectedCategory={setSelectedCategory}
+                    setPlayers={setPlayers}
+                  ></LifeCounter>
+                </Route>
+                <Route exact path="/diceroller" component={DiceRoller} />
+              </Switch>
+            </Container>
+          </BrowserRouter>
         </PlayersContext.Provider>
       </CategoryContext.Provider>
     </ThemeProvider>

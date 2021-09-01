@@ -1,4 +1,4 @@
-import { CategoryContext } from "../App";
+import { CategoryContext } from "../../App";
 import { useContext, useState, useEffect } from "react";
 import {
   IconButton,
@@ -15,7 +15,7 @@ import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { Clear } from "@material-ui/icons";
 import CommanderDamageRadioGroup from "./CommanderDamageRadioGroup";
-import getColorFromPlayerNumber from "./Functions/GetColorFromPlayerNumber";
+import getColorFromPlayerNumber from "../Functions/GetColorFromPlayerNumber";
 import LifeDie from "./LifeDie";
 
 const useStyles = makeStyles((theme) => {
@@ -32,6 +32,9 @@ const useStyles = makeStyles((theme) => {
     title: {
       textAlign: "left",
       wordBreak: "break-all",
+      [theme.breakpoints.down("xs")]: {
+        display: "none",
+      },
     },
     button: {
       margin: theme.spacing(1),
@@ -89,7 +92,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-function LifeCounter({ player, playerNumber, setPlayers }) {
+function LifeCounterCard({ player, playerNumber, setPlayers }) {
   const [currentLife, setCurrentLife] = useState(player.lifeTotal);
   const color = getColorFromPlayerNumber(playerNumber);
   useEffect(() => {
@@ -235,4 +238,4 @@ function LifeCounter({ player, playerNumber, setPlayers }) {
   );
 }
 
-export default LifeCounter;
+export default LifeCounterCard;

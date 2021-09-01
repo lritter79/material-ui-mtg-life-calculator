@@ -1,16 +1,9 @@
-import {
-  AppBar,
-  Toolbar,
-  Menu,
-  MenuItem,
-  Button,
-  Typography,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Tab, Tabs } from "@material-ui/core";
 //import { Menu as MenuIcon } from '@material-ui/icons';
-import { useState, useEffect, useContext } from "react";
-import { CategoryContext } from "../App";
+import { useLocation } from "react-router";
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   toolbarStyle: {
     display: "flex",
@@ -20,64 +13,51 @@ const useStyles = makeStyles({
     borderColor: "white",
     color: "white",
   },
+  indicator: {
+    backgroundColor: "white",
+  },
 });
 
-function TopMenu({ categories, setSelectedCategory }) {
-  const selectedCategory = useContext(CategoryContext);
-  const [anchorEl, setAnchorEl] = useState(null);
-  //useEffect(() => console.log(selectedCategory?.name), [selectedCategory]);
-  //const [isOpen, setIsOpen] = useState(false)
-  const toggleIsOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleMenuItemClick = (category) => {
-    setSelectedCategory(category);
-    setAnchorEl(null);
-  };
-
+function TopMenu() {
   const classes = useStyles();
 
+  //const [value, setValue] = useState(location);
+
+  //const handleChange = (e) => setValue(window.location);
+
+  const [value, setValue] = useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <AppBar position="static">
       <Toolbar className={`${classes.toolbarStyle} ${classes.buttonStyle}`}>
-        <Typography variant="h6">MTG Life Calculator</Typography>
-        <Button
-          aria-label="Select a game format button"
-          aria-controls="menuFormatSelect"
-          onClick={toggleIsOpen}
-          variant="outlined"
-          className={classes.buttonStyle}
-          id="btnSelectGameFormat"
-        >
-          {selectedCategory === null
-            ? "Select A Format"
-            : selectedCategory.name}
-        </Button>
-        <Menu
-          aria-expanded={Boolean(anchorEl)}
-          id="menuFormatSelect"
-          aria-labelledby="btnSelectGameFormat"
-          open={Boolean(anchorEl)}
-          getContentAnchorEl={null}
-          anchorEl={anchorEl}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "center",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "center",
+        <Typography variant="h6">
+          MTG Life Calculator and Dice Roller
+        </Typography>
+        <Tabs
+          aria-label="simple tabs example"
+          value={value}
+          onChange={handleChange}
+          classes={{
+            indicator: classes.indicator,
           }}
         >
-          {categories.map((category) => (
-            <MenuItem
-              key={category.id}
-              onClick={() => handleMenuItemClick(category)}
-            >
-              {category.name}
-            </MenuItem>
-          ))}
-        </Menu>
+          <Tab
+            index={0}
+            label="Life Counter"
+            component={Link}
+            to="/lifecounter"
+            aria-label="navigate to Life Counter"
+          />
+          <Tab
+            index={1}
+            label="Dice Roller"
+            component={Link}
+            to="/diceroller"
+            aria-label="navigate to dice roller"
+          />
+        </Tabs>
       </Toolbar>
     </AppBar>
   );
