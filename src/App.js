@@ -45,17 +45,22 @@ function App() {
     null
   );
   const [players, setPlayers] = useSessionStorage("players", []);
+  useEffect(() => {
+    console.log("set players use effect");
+    console.log(players);
+  }, [players]);
 
   useEffect(() => {
-    setPlayers((prev) =>
-      prev.map((player) => ({
+    setPlayers((prev) => {
+      //console.log(prev);
+      return prev.map((player) => ({
         name: player.name,
         id: player.id,
         lifeTotal: selectedCategory.startingLife,
         commanderDamage: selectedCategory.maxCommanderDamage,
         color: player.color,
-      }))
-    );
+      }));
+    });
   }, [selectedCategory]);
 
   return (

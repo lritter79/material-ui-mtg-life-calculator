@@ -1,9 +1,10 @@
 import LifeCounterCard from "./LifeCounterCard";
 import Grid from "@material-ui/core/Grid";
+import { PlayersContext } from "../../App";
+import { useContext } from "react";
 
-function LifeCounterGrid({ players, setPlayers }) {
-  //const [players, setPlayers] = useState([])
-
+function LifeCounterGrid({ setPlayers }) {
+  const players = useContext(PlayersContext);
   //see: https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
   //var players = [];
   //for (var i = 0; i < numberOfPlayers; i++) {
@@ -15,11 +16,11 @@ function LifeCounterGrid({ players, setPlayers }) {
   return (
     <Grid container spacing={1}>
       {players.map((player, index) => (
-        <Grid item xs={6} sm={6} md={4} lg={3}>
+        <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
           <LifeCounterCard
-            key={index}
             playerNumber={index}
             setPlayers={setPlayers}
+            players={players}
             player={player}
           />
         </Grid>

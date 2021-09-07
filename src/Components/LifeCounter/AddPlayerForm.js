@@ -19,7 +19,14 @@ function AddPlayerForm({ players, setPlayers }) {
   const AddPlayer = (e) => {
     e.preventDefault();
     setNameError(false);
-
+    let commanderDamageArray = players.map((existingPlayer) => {
+      let obj = {
+        id: existingPlayer.id,
+        name: existingPlayer.name,
+        commanderDamage: 0,
+      };
+      return obj;
+    });
     console.log(playerName);
     if (playerName.trim() === "") {
       setNameError(true);
@@ -29,6 +36,7 @@ function AddPlayerForm({ players, setPlayers }) {
         commanderDamage: selectedCategory.maxCommanderDamage,
         id: players.length,
         name: playerName.trim(),
+        commanderDamageArray: commanderDamageArray,
       };
       setPlayers((prev) => [...prev, newPlayer]);
       setPlayerName("");

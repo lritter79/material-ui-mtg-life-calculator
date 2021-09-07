@@ -14,9 +14,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { Clear } from "@material-ui/icons";
-import CommanderDamageRadioGroup from "./CommanderDamageRadioGroup";
 import getColorFromPlayerNumber from "../Functions/GetColorFromPlayerNumber";
 import LifeDie from "./LifeDie";
+import CommanderDamageContainer from "./CommanderDamage/CommanderDamageContainer";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -42,7 +42,10 @@ const useStyles = makeStyles((theme) => {
       fontSize: "xxx-large",
 
       [theme.breakpoints.down("sm")]: {
-        fontSize: "xxx-large",
+        fontSize: "xx-large",
+      },
+      [theme.breakpoints.down("xs")]: {
+        fontSize: "large",
       },
     },
     close: {
@@ -92,7 +95,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-function LifeCounterCard({ player, playerNumber, setPlayers }) {
+function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   const [currentLife, setCurrentLife] = useState(player.lifeTotal);
   const color = getColorFromPlayerNumber(playerNumber);
   useEffect(() => {
@@ -113,7 +116,10 @@ function LifeCounterCard({ player, playerNumber, setPlayers }) {
         .map(function (p, i) {
           //console.log(p)
           let obj = Object.assign(p, { id: i });
-          //console.log(obj)
+          obj.commanderDamageArray = p.commanderDamageArray.filter(
+            (playerObj) => playerObj.id !== player.id
+          );
+          console.log(obj);
           return obj;
         })
     );
@@ -226,14 +232,12 @@ function LifeCounterCard({ player, playerNumber, setPlayers }) {
             className={`${classes.subtractLife}`}
           ></RemoveCircleIcon>
         </IconButton>
-        {false && (
-          <CommanderDamageRadioGroup
-            amountToAddOrSubtract={amountToAddOrSubtract}
-            player={player}
-            currentLife={currentLife}
-          ></CommanderDamageRadioGroup>
-        )}
       </CardActions>
+      <CardContent>
+        {selectedCategory.isCommander && (
+          <CommanderDamageContainer player={player} />
+        )}
+      </CardContent>
     </Card>
   );
 }
