@@ -3,7 +3,7 @@ import { Container } from "@material-ui/core";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import TopMenu from "./Components/TopMenu";
 import colorCodes from "./Components/LifeCounter/ColorCodes";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import LifeCounter from "./Components/LifeCounter/LifeCounter";
 import categories from "./Components/LifeCounter/Categories";
 import { brown } from "@material-ui/core/colors";
@@ -40,28 +40,41 @@ customTheme.typography.body2 = {
 //}
 
 function App() {
+  const isFirstRun = useRef(true);
+
   const [selectedCategory, setSelectedCategory] = useSessionStorage(
     "category",
     null
   );
   const [players, setPlayers] = useSessionStorage("players", []);
   useEffect(() => {
-    console.log("set players use effect");
-    console.log(players);
-  }, [players]);
-
-  useEffect(() => {
-    setPlayers((prev) => {
-      //console.log(prev);
-      return prev.map((player) => ({
-        name: player.name,
-        id: player.id,
-        lifeTotal: selectedCategory.startingLife,
-        commanderDamage: selectedCategory.maxCommanderDamage,
-        color: player.color,
-      }));
-    });
+    if (isFirstRun.current === false) {
+      console.log("reset life totals");
+      setPlayers((prev) => {
+        //console.log(prev);
+        return prev.map((player) => ({
+          name: player.name,
+          id: player.id,
+          lifeTotal: selectedCategory.startingLife,
+          commanderDamage: 0,
+          color: player.color,
+        }));
+      });
+    }
   }, [selectedCategory]);
+  useEffect(() => {
+    //console.log("set players use effect");
+    //console.log(players);
+  }, [players]);
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
+    console.log("Effect was run");
+    console.log(isFirstRun);
+  });
 
   return (
     <ThemeProvider theme={customTheme}>

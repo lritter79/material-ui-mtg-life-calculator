@@ -1,8 +1,21 @@
 import { Box, TextField } from "@material-ui/core";
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import getColorFromPlayerNumber from "../../Functions/GetColorFromPlayerNumber";
+const useStyles = makeStyles((theme) => {
+  return {
+    color: {
+      color: ({ color }) => {
+        return `${color}`;
+      },
+    },
+  };
+});
 
 function CommanderDamageCounter({ player, enemyPlayer }) {
   const [damage, setDamage] = useState(0);
+  const color = getColorFromPlayerNumber(enemyPlayer.id);
+  const classes = useStyles({ color });
   useEffect(() => {
     setDamage(0);
   }, [player]);
@@ -31,6 +44,7 @@ function CommanderDamageCounter({ player, enemyPlayer }) {
       <TextField
         label={`${enemyPlayer.name}`}
         type="number"
+        className={classes.color}
         onChange={handleChange}
         value={damage}
         InputLabelProps={{

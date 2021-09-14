@@ -97,13 +97,13 @@ const useStyles = makeStyles((theme) => {
 
 function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   const [currentLife, setCurrentLife] = useState(player.lifeTotal);
-  const color = getColorFromPlayerNumber(playerNumber);
+  const color = getColorFromPlayerNumber(player.id);
   useEffect(() => {
     setCurrentLife(player.lifeTotal);
-    setAmountToAddOrSubtract(0);
+    setAmountToAddOrSubtract(1);
   }, [player]);
   const selectedCategory = useContext(CategoryContext);
-  const [amountToAddOrSubtract, setAmountToAddOrSubtract] = useState(0);
+  const [amountToAddOrSubtract, setAmountToAddOrSubtract] = useState(1);
   //const [startingLife, setStartingLife] = useState(selectedCategory.startingLife)
   const handleChange = (event) => {
     setAmountToAddOrSubtract(event.target.value);
@@ -119,7 +119,7 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
           obj.commanderDamageArray = p.commanderDamageArray.filter(
             (playerObj) => playerObj.id !== player.id
           );
-          console.log(obj);
+          //console.log(obj);
           return obj;
         })
     );
@@ -131,11 +131,11 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
     setPlayers((prev) =>
       prev.map(function (p, i) {
         if (player.id === p.id) {
-          console.log(p);
+          //console.log(p);
           let obj = Object.assign(p, {
             lifeTotal: +currentLife + +amountToAddOrSubtract,
           });
-          console.log(obj);
+          //console.log(obj);
           return obj;
         } else {
           return p;
@@ -150,11 +150,11 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
     setPlayers((prev) =>
       prev.map(function (p, i) {
         if (player.id === p.id) {
-          console.log(p);
+          //console.log(p);
           let obj = Object.assign(p, {
             lifeTotal: +currentLife - +amountToAddOrSubtract,
           });
-          console.log(obj);
+          //console.log(obj);
           return obj;
         } else {
           return p;
@@ -164,12 +164,12 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   };
 
   var items = [];
-  for (var i = 0; i < 101; i++) {
+  for (var i = 0; i < 50; i++) {
     // note: we are adding a key prop here to allow react to uniquely identify each
     // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
     items.push(
-      <option value={i} key={i}>
-        {i}
+      <option value={+i + 1} key={i}>
+        {+i + 1}
       </option>
     );
   }
