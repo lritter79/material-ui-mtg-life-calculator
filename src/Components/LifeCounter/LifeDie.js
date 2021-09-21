@@ -1,6 +1,6 @@
-import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import DieSvg from "./DieSvg";
+import LifeTotalTypography from "./LifeTotalTypography";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -34,23 +34,6 @@ const useStyles = makeStyles((theme) => {
       textAlign: "center",
       top: "40%",
     },
-    lifeTotal: {
-      fontWeight: "600",
-
-      [theme.breakpoints.down("sm")]: {
-        color: () => "black",
-      },
-      [theme.breakpoints.down("xs")]: {
-        color: () => "black",
-      },
-      color: ({ color }) => {
-        if (color === "yellow" || color === "pink") {
-          return "black";
-        } else {
-          return "white";
-        }
-      },
-    },
   };
 });
 function LifeDie({ currentLife, color }) {
@@ -59,9 +42,7 @@ function LifeDie({ currentLife, color }) {
   return (
     <div className={classes.container}>
       <div className={classes.position}>
-        <Typography variant="body2" className={classes.lifeTotal}>
-          {currentLife}
-        </Typography>
+        <LifeTotalTypography color={color} currentLife={currentLife} />
       </div>
       <DieSvg color={color} />
     </div>
