@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => {
         fontSize: "xx-large",
       },
       [theme.breakpoints.down("xs")]: {
-        fontSize: "large",
+        fontSize: "xx-large",
       },
     },
     close: {

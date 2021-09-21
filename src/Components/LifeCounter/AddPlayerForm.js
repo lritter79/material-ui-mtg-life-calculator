@@ -46,7 +46,7 @@ function AddPlayerForm({ players, setPlayers }) {
   return (
     <form
       noValidate
-      autocomplete="off"
+      autoComplete="off"
       className={classes.form}
       onSubmit={AddPlayer}
     >

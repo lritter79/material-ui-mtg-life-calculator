@@ -36,6 +36,10 @@ const useStyles = makeStyles((theme) => {
     },
     lifeTotal: {
       fontWeight: "600",
+
+      [theme.breakpoints.down("sm")]: {
+        color: () => "black",
+      },
       [theme.breakpoints.down("xs")]: {
         color: () => "black",
       },

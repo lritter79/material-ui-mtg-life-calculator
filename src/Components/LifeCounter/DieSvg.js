@@ -5,13 +5,13 @@ const useStyles = makeStyles((theme) => {
       width: "70%",
 
       [theme.breakpoints.down("lg")]: {
-        width: "85%",
+        width: "75%",
       },
       [theme.breakpoints.down("md")]: {
         width: "75%",
       },
       [theme.breakpoints.down("sm")]: {
-        width: "70%",
+        display: "none",
       },
       [theme.breakpoints.down("xs")]: {
         display: "none",
