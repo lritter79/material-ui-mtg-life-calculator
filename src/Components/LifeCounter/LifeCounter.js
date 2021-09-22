@@ -96,17 +96,20 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
         ))}
       </Menu>
       <AddPlayerForm setPlayers={setPlayers} players={players} />
-      {players.length < 1 && (
-        <Button
-          color="primary"
-          aria-label="reset life totals"
-          component="span"
-          disabled={players.length < 1 ? true : false}
-          onClick={onResetClick}
-        >
-          Reset
-        </Button>
-      )}
+      <div className={classes.center}>
+        {players.length >= 1 && (
+          <Button
+            color="primary"
+            aria-label="reset life totals"
+            component="div"
+            disabled={players.length < 1 ? true : false}
+            onClick={onResetClick}
+            variant="outlined"
+          >
+            Reset Life Totals
+          </Button>
+        )}
+      </div>
 
       <LifeCounterGrid players={players} setPlayers={setPlayers} />
     </div>
