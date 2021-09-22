@@ -4,7 +4,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import LifeCounterGrid from "./LifeCounterGrid";
 import { CategoryContext } from "../../App";
-import { useState, useContext } from "react";
+import { useState, useContext, useCallback } from "react";
 import { PlayersContext } from "../../App";
 import { makeStyles } from "@material-ui/styles";
 
@@ -27,9 +27,30 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
   const toggleIsOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const reset = useCallback(
+    (event) => {
+      console.log("reset life totals");
+      setPlayers((prev) => {
+        //console.log(prev);
+        return prev.map((player) => ({
+          name: player.name,
+          id: player.id,
+          lifeTotal: selectedCategory.startingLife,
+          commanderDamage: 0,
+          color: player.color,
+        }));
+      });
+    },
+    [players]
+  );
+
   const handleMenuItemClick = (category) => {
     setSelectedCategory(category);
     setAnchorEl(null);
+  };
+
+  const onResetClick = function (e) {
+    reset(e);
   };
 
   return (
@@ -75,6 +96,15 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
         ))}
       </Menu>
       <AddPlayerForm setPlayers={setPlayers} players={players} />
+      <Button
+        color="primary"
+        aria-label="reset life totals"
+        component="span"
+        disabled={players.length < 1 ? true : false}
+        onClick={onResetClick}
+      >
+        Reset
+      </Button>
       <LifeCounterGrid players={players} setPlayers={setPlayers} />
     </div>
   );
