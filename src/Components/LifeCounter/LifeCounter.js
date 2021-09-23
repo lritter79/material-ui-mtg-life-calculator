@@ -7,6 +7,7 @@ import { CategoryContext } from "../../App";
 import { useState, useContext, useCallback } from "react";
 import { PlayersContext } from "../../App";
 import { makeStyles } from "@material-ui/styles";
+import ResetGame from "../Functions/ResetGame";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -30,16 +31,7 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
   const reset = useCallback(
     (event) => {
       console.log("reset life totals");
-      setPlayers((prev) => {
-        //console.log(prev);
-        return prev.map((player) => ({
-          name: player.name,
-          id: player.id,
-          lifeTotal: selectedCategory.startingLife,
-          commanderDamage: 0,
-          color: player.color,
-        }));
-      });
+      setPlayers((prev) => ResetGame(prev, selectedCategory));
     },
     [players]
   );

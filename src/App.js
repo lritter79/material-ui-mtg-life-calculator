@@ -10,6 +10,7 @@ import { brown } from "@material-ui/core/colors";
 import useSessionStorage from "./Components/Functions/UseSessionStorage";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import DiceRoller from "./Components/DiceRoller/DiceRoller";
+import ResetGame from "./Components/Functions/ResetGame";
 export const CategoryContext = React.createContext();
 export const PlayersContext = React.createContext();
 
@@ -50,16 +51,7 @@ function App() {
   useEffect(() => {
     if (isFirstRun.current === false) {
       console.log("reset life totals");
-      setPlayers((prev) => {
-        //console.log(prev);
-        return prev.map((player) => ({
-          name: player.name,
-          id: player.id,
-          lifeTotal: selectedCategory.startingLife,
-          commanderDamage: 0,
-          color: player.color,
-        }));
-      });
+      setPlayers((prev) => ResetGame(prev, selectedCategory));
     }
   }, [selectedCategory]);
   useEffect(() => {
