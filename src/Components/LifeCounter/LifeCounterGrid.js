@@ -8,8 +8,8 @@ import { animated, useTrail } from "react-spring";
 function LifeCounterGrid({ setPlayers }) {
   const players = useContext(PlayersContext);
   const trailSprings = useTrail(players.length, {
-    from: { opacity: 0 },
-    to: { opacity: 1 },
+    from: { opacity: 0, marginRight: -10, marginLeft: 10 },
+    to: { opacity: 1, marginRight: 0, marginLeft: 0 },
   });
   //see: https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
   //var players = [];
