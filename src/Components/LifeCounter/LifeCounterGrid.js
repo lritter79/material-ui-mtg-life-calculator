@@ -2,9 +2,15 @@ import LifeCounterCard from "./LifeCounterCard";
 import Grid from "@material-ui/core/Grid";
 import { PlayersContext } from "../../App";
 import { useContext } from "react";
+//import AnimatedCard from "./AnimatedCard";
+import { animated, useTrail } from "react-spring";
 
 function LifeCounterGrid({ setPlayers }) {
   const players = useContext(PlayersContext);
+  const trailSprings = useTrail(players.length, {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
   //see: https://stackoverflow.com/questions/22876978/loop-inside-react-jsx
   //var players = [];
   //for (var i = 0; i < numberOfPlayers; i++) {
@@ -15,14 +21,16 @@ function LifeCounterGrid({ setPlayers }) {
   //console.log(players)
   return (
     <Grid container spacing={1}>
-      {players.map((player, index) => (
+      {trailSprings.map((spring, index) => (
         <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
-          <LifeCounterCard
-            playerNumber={index}
-            setPlayers={setPlayers}
-            players={players}
-            player={player}
-          />
+          <animated.div style={spring}>
+            <LifeCounterCard
+              playerNumber={index}
+              setPlayers={setPlayers}
+              players={players}
+              player={players[index]}
+            />
+          </animated.div>
         </Grid>
       ))}
     </Grid>
