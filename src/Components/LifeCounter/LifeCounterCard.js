@@ -17,6 +17,7 @@ import { Clear } from "@material-ui/icons";
 import getColorFromPlayerNumber from "../Functions/GetColorFromPlayerNumber";
 import LifeDie from "./LifeDie";
 import CommanderDamageContainer from "./CommanderDamage/CommanderDamageContainer";
+import { useTransition, animated } from "react-spring";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -179,6 +180,12 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   //useEffect(() => {
   //  setStartingLife(selectedCategory.startingLife)
   //}, [selectedCategory])
+
+  const transition = useTransition(selectedCategory.isCommander, {
+    from: { opacity: 0, height: "0%" },
+    enter: { opacity: 1, height: "100%" },
+    leave: { opacity: 0, height: "0%" },
+  });
   return (
     <Card className={`${classes.lifeCounterBox}`}>
       <CardHeader
@@ -234,8 +241,14 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
         </IconButton>
       </CardActions>
       <CardContent>
-        {selectedCategory.isCommander && (
-          <CommanderDamageContainer player={player} />
+        {transition((style, item) =>
+          item ? (
+            <animated.div style={style}>
+              <CommanderDamageContainer player={player} />
+            </animated.div>
+          ) : (
+            ""
+          )
         )}
       </CardContent>
     </Card>
