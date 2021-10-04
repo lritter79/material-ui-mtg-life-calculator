@@ -116,9 +116,9 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
         .map(function (p, i) {
           //console.log(p)
           let obj = Object.assign(p, { id: i });
-          obj.commanderDamageArray = p.commanderDamageArray.filter(
-            (playerObj) => playerObj.id !== player.id
-          );
+          //obj.commanderDamageArray = p.commanderDamageArray.filter(
+          //  (playerObj) => playerObj.id !== player.id
+          //);
           //console.log(obj);
           return obj;
         })
