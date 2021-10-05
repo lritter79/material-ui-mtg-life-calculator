@@ -99,10 +99,10 @@ const useStyles = makeStyles((theme) => {
 function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   const [currentLife, setCurrentLife] = useState(player.lifeTotal);
   const color = getColorFromPlayerNumber(player.id);
-  const [commanderDamageHeight, setCommanderDamageHeight] = useState(0);
+  //const [commanderDamageHeight, setCommanderDamageHeight] = useState();
   useEffect(() => {
     console.log("mounting");
-    setCommanderDamageHeight(getHeight(players.length));
+    //setCommanderDamageHeight(getHeight(players.length));
   }, []);
 
   useEffect(() => {
@@ -112,7 +112,7 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
 
   useEffect(() => {
     // console.log(height);
-    setCommanderDamageHeight(getHeight(players.length));
+    //setCommanderDamageHeight(getHeight(players.length));
     // console.log(height);
     //console.log(players);
   }, [players]);
@@ -125,7 +125,7 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
 
   const getHeight = (numberOfPlayers) => {
     console.log(numberOfPlayers);
-    console.log(32 + (48 * numberOfPlayers - 1));
+    console.log("");
     return 32 + (48 * numberOfPlayers - 1);
   };
 
