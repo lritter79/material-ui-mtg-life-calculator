@@ -50,7 +50,7 @@ function App() {
   const [players, setPlayers] = useSessionStorage("players", []);
   useEffect(() => {
     if (isFirstRun.current === false) {
-      console.log("reset life totals");
+      //console.log("reset life totals");
       setPlayers((prev) => ResetGame(prev, selectedCategory));
     }
   }, [selectedCategory]);
@@ -64,8 +64,8 @@ function App() {
       return;
     }
 
-    console.log("Effect was run");
-    console.log(isFirstRun);
+    //console.log("Effect was run");
+    //console.log(isFirstRun);
   });
 
   return (

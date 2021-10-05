@@ -17,7 +17,7 @@ import { Clear } from "@material-ui/icons";
 import getColorFromPlayerNumber from "../Functions/GetColorFromPlayerNumber";
 import LifeDie from "./LifeDie";
 import CommanderDamageContainer from "./CommanderDamage/CommanderDamageContainer";
-import { useTransition, animated } from "react-spring";
+import { useSpring, animated } from "react-spring";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -99,7 +99,7 @@ const useStyles = makeStyles((theme) => {
 function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   const [currentLife, setCurrentLife] = useState(player.lifeTotal);
   const color = getColorFromPlayerNumber(player.id);
-  //const [commanderDamageHeight, setCommanderDamageHeight] = useState();
+  const [commanderDamageHeight, setCommanderDamageHeight] = useState();
   useEffect(() => {
     console.log("mounting");
     //setCommanderDamageHeight(getHeight(players.length));
@@ -112,7 +112,7 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
 
   useEffect(() => {
     // console.log(height);
-    //setCommanderDamageHeight(getHeight(players.length));
+    setCommanderDamageHeight(getHeight(players.length));
     // console.log(height);
     //console.log(players);
   }, [players]);
@@ -200,14 +200,22 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   //  setStartingLife(selectedCategory.startingLife)
   //}, [selectedCategory])
 
-  const transition = useTransition(selectedCategory.isCommander, {
-    from: { opacity: 0, marginTop: -20 },
-    enter: (item) => async (next) => {
-      await next({ marginTop: 0, opacity: 1 });
-    },
-    leave: (item) => async (next) => {
-      //await next({});
-      await next({ opacity: 0, height: 0, marginTop: 0 });
+  // const transition = useTransition(selectedCategory.isCommander, {
+  //   from: { opacity: 0, marginTop: -20 },
+  //   enter: (item) => async (next) => {
+  //     await next({ marginTop: 0, opacity: 1 });
+  //   },
+  //   leave: (item) => async (next) => {
+  //     //await next({});
+  //     await next({ opacity: 0, height: 0, marginTop: 0 });
+  //   },
+  // });
+
+  const slideInStyles = useSpring({
+    from: { opacity: 0, height: 0 },
+    to: {
+      opacity: selectedCategory.isCommander ? 1 : 0,
+      height: selectedCategory.isCommander ? commanderDamageHeight : 0,
     },
   });
   return (
@@ -265,15 +273,9 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
         </IconButton>
       </CardActions>
       <CardContent>
-        {transition((style, item) =>
-          item ? (
-            <animated.div style={style}>
-              <CommanderDamageContainer player={player} />
-            </animated.div>
-          ) : (
-            ""
-          )
-        )}
+        <animated.div style={slideInStyles}>
+          <CommanderDamageContainer player={player} />
+        </animated.div>
       </CardContent>
     </Card>
   );
