@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => {
             return "white";
           }
         } else {
-          return "red";
+          return "white";
         }
       },
     },
