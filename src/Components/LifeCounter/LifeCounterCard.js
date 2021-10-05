@@ -99,15 +99,34 @@ const useStyles = makeStyles((theme) => {
 function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   const [currentLife, setCurrentLife] = useState(player.lifeTotal);
   const color = getColorFromPlayerNumber(player.id);
+  const [commanderDamageHeight, setCommanderDamageHeight] = useState(0);
+  useEffect(() => {
+    console.log("mounting");
+    setCommanderDamageHeight(getHeight(players.length));
+  }, []);
+
   useEffect(() => {
     setCurrentLife(player.lifeTotal);
     setAmountToAddOrSubtract(1);
   }, [player]);
+
+  useEffect(() => {
+    // console.log(height);
+    setCommanderDamageHeight(getHeight(players.length));
+    // console.log(height);
+    //console.log(players);
+  }, [players]);
   const selectedCategory = useContext(CategoryContext);
   const [amountToAddOrSubtract, setAmountToAddOrSubtract] = useState(1);
   //const [startingLife, setStartingLife] = useState(selectedCategory.startingLife)
   const handleChange = (event) => {
     setAmountToAddOrSubtract(event.target.value);
+  };
+
+  const getHeight = (numberOfPlayers) => {
+    console.log(numberOfPlayers);
+    console.log(32 + (48 * numberOfPlayers - 1));
+    return 32 + (48 * numberOfPlayers - 1);
   };
 
   const handleDelete = (event) => {
@@ -182,9 +201,14 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   //}, [selectedCategory])
 
   const transition = useTransition(selectedCategory.isCommander, {
-    from: { opacity: 0, height: "0%" },
-    enter: { opacity: 1, height: "100%" },
-    leave: { opacity: 0, height: "0%" },
+    from: { opacity: 0, marginTop: -20 },
+    enter: (item) => async (next) => {
+      await next({ marginTop: 0, opacity: 1 });
+    },
+    leave: (item) => async (next) => {
+      //await next({});
+      await next({ opacity: 0, height: 0, marginTop: 0 });
+    },
   });
   return (
     <Card className={`${classes.lifeCounterBox}`}>
