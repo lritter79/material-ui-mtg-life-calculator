@@ -11,7 +11,9 @@ import useSessionStorage from "./Components/Functions/UseSessionStorage";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import DiceRoller from "./Components/DiceRoller/DiceRoller";
 import ResetGame from "./Components/Functions/ResetGame";
+
 export const CategoryContext = React.createContext();
+
 export const PlayersContext = React.createContext();
 
 const customTheme = createTheme({
@@ -27,7 +29,7 @@ const customTheme = createTheme({
 
 customTheme.typography.body2 = {
   fontSize: "1.5rem",
-  fontWeight: "300",
+  fontWeight: 300,
 };
 
 //customTheme.typography.h6 = {

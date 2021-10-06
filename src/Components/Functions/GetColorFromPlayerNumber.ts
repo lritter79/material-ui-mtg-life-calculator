@@ -1,5 +1,5 @@
-export default function getColorFromPlayerNumber(player) {
-    switch(player % 8) {
+export default function getColorFromPlayerNumber(id:number) {
+    switch(id % 8) {
         case 0:
           return 'blue'
         case 1:
@@ -17,6 +17,6 @@ export default function getColorFromPlayerNumber(player) {
         case 7:
           return 'grey'
         default:
-          return 'white'
+          return ''
     } 
   }

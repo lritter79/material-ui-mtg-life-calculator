@@ -2,6 +2,7 @@ import { Box, TextField } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import getColorFromPlayerNumber from "../../Functions/GetColorFromPlayerNumber";
+
 const useStyles = makeStyles((theme) => {
   return {
     color: {
@@ -39,6 +40,7 @@ function CommanderDamageCounter({ player, enemyPlayer }) {
     //   });
     // });
   };
+
   return (
     <Box>
       <TextField

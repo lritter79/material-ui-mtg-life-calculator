@@ -3,6 +3,7 @@ import CommanderDamageCounter from "./CommanderDamageCounter";
 import { useEffect, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { PlayersContext } from "../../../App";
+import PlayerInterface from "../../../PlayerInterface";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -13,6 +14,11 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
+
+// interface CommanderDamageContainerProps {
+//   player: PlayerInterface;
+// }
+
 function CommanderDamageContainer({ player }) {
   const players = useContext(PlayersContext);
   const [commanderDamageTotals, setCommanderDamageTotals] = useState([]);

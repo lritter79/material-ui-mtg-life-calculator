@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => {
   return {
     lifeTotal: {
-      fontWeight: "600",
+      fontWeight: "500",
 
       [theme.breakpoints.down("sm")]: {
         color: ({ currentLife }) => (currentLife > 0 ? "black" : "red"),
@@ -11,13 +11,9 @@ const useStyles = makeStyles((theme) => {
       [theme.breakpoints.down("xs")]: {
         color: ({ currentLife }) => (currentLife > 0 ? "black" : "red"),
       },
-      color: ({ currentLife, color }) => {
-        if (currentLife > 0) {
-          if (color === "yellow" || color === "pink") {
-            return "black";
-          } else {
-            return "white";
-          }
+      color: ({ color }) => {
+        if (color === "yellow" || color === "pink") {
+          return "black";
         } else {
           return "white";
         }
@@ -25,6 +21,7 @@ const useStyles = makeStyles((theme) => {
     },
   };
 });
+
 function LifeTotalTypography({ currentLife, color }) {
   const classes = useStyles({ currentLife, color });
   return (

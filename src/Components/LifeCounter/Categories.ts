@@ -1,4 +1,6 @@
-const categories = [
+import CategoryInterface from "../../CategoryInterface"
+
+const categories:CategoryInterface[] = [
     {id: 0, name:'EDH', startingLife: 40, maxCommanderDamage:21, isCommander:true},
     {id: 1, name:'Pauper EDH', startingLife: 30, maxCommanderDamage:16, isCommander:true},
     {id: 2, name:'60 Card', startingLife: 20, maxCommanderDamage:null, isCommander:false},

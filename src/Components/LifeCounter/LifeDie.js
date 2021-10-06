@@ -50,7 +50,7 @@ function LifeDie({ currentLife, color }) {
   // }, [currentLife]);
   const polygonStyle = { fill: color, strokeWidth: 1 };
   const contentProps = useSpring({
-    transform: currentLife >= 1 ? "rotate(0deg)" : "rotate(360deg)",
+    transform: currentLife >= 1 ? "rotate(0deg)" : "rotate(180deg)",
   });
   return (
     <div className={classes.container}>

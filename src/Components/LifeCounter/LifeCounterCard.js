@@ -126,7 +126,7 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   const getHeight = (numberOfPlayers) => {
     console.log(numberOfPlayers);
     console.log("");
-    return 32 + (48 * numberOfPlayers - 1);
+    return 32 + 48 * (numberOfPlayers - 1);
   };
 
   const handleDelete = (event) => {
@@ -212,11 +212,8 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
   // });
 
   const slideInStyles = useSpring({
-    from: { opacity: 0, height: 0 },
-    to: {
-      opacity: selectedCategory.isCommander ? 1 : 0,
-      height: selectedCategory.isCommander ? commanderDamageHeight : 0,
-    },
+    opacity: selectedCategory.isCommander ? 1 : 0,
+    height: selectedCategory.isCommander ? commanderDamageHeight : 0,
   });
   return (
     <Card className={`${classes.lifeCounterBox}`}>
