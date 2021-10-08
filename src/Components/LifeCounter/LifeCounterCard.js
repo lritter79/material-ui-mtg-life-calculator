@@ -1,5 +1,5 @@
 import { CategoryContext } from "../../App";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useReducer } from "react";
 import {
   IconButton,
   NativeSelect,
@@ -18,6 +18,35 @@ import getColorFromPlayerNumber from "../Functions/GetColorFromPlayerNumber";
 import LifeDie from "./LifeDie";
 import CommanderDamageContainer from "./CommanderDamage/CommanderDamageContainer";
 import { useSpring, animated } from "react-spring";
+
+const reducer = (state, action) => {
+  console.log(action);
+  console.log(state);
+  switch (action.type) {
+    case "increment":
+      state.currentLife = +state.currentLife + +action.incrAmount;
+      //console.log(state.currentLife);
+      return state;
+      break;
+    case "decrement":
+      state.currentLife = +state.currentLife - +action.incrAmount;
+      //console.log(state.currentLife);
+      return state;
+      break;
+    case "reset":
+      state.currentLife = action.lifeTotal;
+      console.log(state.currentLife);
+      return state;
+      break;
+    case "mount":
+      state.currentLife = action.initialLife;
+      return state;
+      break;
+    default:
+      return state;
+      break;
+  }
+};
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -97,16 +126,19 @@ const useStyles = makeStyles((theme) => {
 });
 
 function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
-  const [currentLife, setCurrentLife] = useState(player.lifeTotal);
+  const [amountToAddOrSubtract, setAmountToAddOrSubtract] = useState(1);
+  const initialLife = { currentLife: player.lifeTotal };
+  const [state, dispatch] = useReducer(reducer, initialLife);
   const color = getColorFromPlayerNumber(player.id);
   const [commanderDamageHeight, setCommanderDamageHeight] = useState();
   useEffect(() => {
     console.log("mounting");
     //setCommanderDamageHeight(getHeight(players.length));
+    dispatch({ type: "mount", initialLife: player.lifeTotal });
   }, []);
 
   useEffect(() => {
-    setCurrentLife(player.lifeTotal);
+    dispatch({ type: "reset", lifeTotal: player.lifeTotal });
     setAmountToAddOrSubtract(1);
   }, [player]);
 
@@ -116,16 +148,19 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
     // console.log(height);
     //console.log(players);
   }, [players]);
+
   const selectedCategory = useContext(CategoryContext);
-  const [amountToAddOrSubtract, setAmountToAddOrSubtract] = useState(1);
+
+  //useEffect(() => {}, [selectedCategory]);
+
   //const [startingLife, setStartingLife] = useState(selectedCategory.startingLife)
   const handleChange = (event) => {
     setAmountToAddOrSubtract(event.target.value);
   };
 
   const getHeight = (numberOfPlayers) => {
-    console.log(numberOfPlayers);
-    console.log("");
+    //console.log(numberOfPlayers);
+    //console.log("");
     return 32 + 48 * (numberOfPlayers - 1);
   };
 
@@ -147,13 +182,17 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
 
   const addLife = (event) => {
     //for the additional '+' see https://stackoverflow.com/questions/14496531/adding-two-numbers-concatenates-them-instead-of-calculating-the-sum
-    setCurrentLife(+currentLife + +amountToAddOrSubtract);
+    //dispatch(+currentLife + +amountToAddOrSubtract);
+    dispatch({
+      type: "increment",
+      incrAmount: amountToAddOrSubtract,
+    });
     setPlayers((prev) =>
       prev.map(function (p, i) {
         if (player.id === p.id) {
           //console.log(p);
           let obj = Object.assign(p, {
-            lifeTotal: +currentLife + +amountToAddOrSubtract,
+            lifeTotal: +state.currentLife,
           });
           //console.log(obj);
           return obj;
@@ -166,13 +205,16 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
 
   const subtractLife = (event) => {
     //for the additional '+' see https://stackoverflow.com/questions/14496531/adding-two-numbers-concatenates-them-instead-of-calculating-the-sum
-    setCurrentLife(+currentLife - +amountToAddOrSubtract);
+    dispatch({
+      type: "decrement",
+      incrAmount: amountToAddOrSubtract,
+    });
     setPlayers((prev) =>
       prev.map(function (p, i) {
         if (player.id === p.id) {
           //console.log(p);
           let obj = Object.assign(p, {
-            lifeTotal: +currentLife - +amountToAddOrSubtract,
+            lifeTotal: +state.currentLife,
           });
           //console.log(obj);
           return obj;
@@ -237,7 +279,7 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
       ></CardHeader>
       <CardContent className={classes.content}>
         {/*<Typography variant="body2">{currentLife}</Typography>*/}
-        <LifeDie currentLife={currentLife} color={color} />
+        <LifeDie currentLife={state.currentLife} color={color} />
       </CardContent>
       <CardActions className={classes.action}>
         <IconButton
