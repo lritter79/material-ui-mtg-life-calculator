@@ -22,6 +22,7 @@ function LifeCounterGrid({ setPlayers }) {
   return (
     <Grid container spacing={1}>
       {trailSprings.map((spring, index) => (
+        //added better responsivity
         <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
           <animated.div style={spring}>
             <LifeCounterCard
