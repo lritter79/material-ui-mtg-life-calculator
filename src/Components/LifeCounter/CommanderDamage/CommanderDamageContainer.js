@@ -1,7 +1,7 @@
-import { Paper, Typography, Box } from "@material-ui/core";
+import { Paper, Typography, Box } from "@mui/material";
 import CommanderDamageCounter from "./CommanderDamageCounter";
 import { useEffect, useState, useContext } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { PlayersContext } from "../../../App";
 import PlayerInterface from "../../../PlayerInterface";
 
@@ -43,20 +43,25 @@ function CommanderDamageContainer({ player }) {
     //console.log(player);
   }, [player]);
   return (
-    <Paper className={classes.content}>
-      <Typography variant="body2">Commander Damage</Typography>
-      {commanderDamageTotals && (
-        <Box>
-          {commanderDamageTotals.map((commanderDamageObject, i) => (
-            <CommanderDamageCounter
-              player={player}
-              enemyPlayer={commanderDamageObject}
-              key={i}
-            />
-          ))}
-        </Box>
+    <>
+      {" "}
+      {players.length > 1 && (
+        <Paper className={classes.content}>
+          <Typography variant="body2">Commander Damage</Typography>
+          {commanderDamageTotals && (
+            <Box>
+              {commanderDamageTotals.map((commanderDamageObject, i) => (
+                <CommanderDamageCounter
+                  player={player}
+                  enemyPlayer={commanderDamageObject}
+                  key={i}
+                />
+              ))}
+            </Box>
+          )}
+        </Paper>
       )}
-    </Paper>
+    </>
   );
 }
 

@@ -1,5 +1,5 @@
 import LifeCounterCard from "./LifeCounterCard";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import { PlayersContext } from "../../App";
 import { useContext } from "react";
 //import AnimatedCard from "./AnimatedCard";

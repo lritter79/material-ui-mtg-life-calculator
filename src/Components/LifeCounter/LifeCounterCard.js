@@ -9,11 +9,11 @@ import {
   Typography,
   Avatar,
   CardActions,
-} from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import { Clear } from "@material-ui/icons";
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { Clear } from "@mui/icons-material";
 import getColorFromPlayerNumber from "../Functions/GetColorFromPlayerNumber";
 import LifeDie from "./LifeDie";
 import CommanderDamageContainer from "./CommanderDamage/CommanderDamageContainer";

@@ -1,12 +1,12 @@
 import AddPlayerForm from "./AddPlayerForm";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import LifeCounterGrid from "./LifeCounterGrid";
 import { CategoryContext } from "../../App";
 import { useState, useContext, useCallback } from "react";
 import { PlayersContext } from "../../App";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@mui/styles";
 import ResetGame from "../Functions/ResetGame";
 
 const useStyles = makeStyles((theme) => {

@@ -1,6 +1,6 @@
-import { Box, TextField } from "@material-ui/core";
+import { Box, TextField } from "@mui/material";
 import { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import getColorFromPlayerNumber from "../../Functions/GetColorFromPlayerNumber";
 
 const useStyles = makeStyles((theme) => {

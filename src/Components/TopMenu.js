@@ -1,20 +1,13 @@
-import { AppBar, Toolbar, Typography, Tab, Tabs } from "@material-ui/core";
-//import { Menu as MenuIcon } from '@material-ui/icons';
+import { AppBar, Toolbar, Typography, Tab, Tabs } from "@mui/material";
+//import { Menu as MenuIcon } from '@mui/icons-material';
 import { useLocation } from "react-router";
 import { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   toolbarStyle: {
     display: "flex",
     justifyContent: "space-between",
-  },
-  buttonStyle: {
-    borderColor: "white",
-    color: "white",
-  },
-  indicator: {
-    backgroundColor: "white",
   },
 });
 
@@ -31,7 +24,7 @@ function TopMenu() {
   };
   return (
     <AppBar position="static">
-      <Toolbar className={`${classes.toolbarStyle} ${classes.buttonStyle}`}>
+      <Toolbar className={`${classes.toolbarStyle}`}>
         <Typography variant="h6">
           MTG Life Calculator and Dice Roller
         </Typography>
@@ -39,9 +32,6 @@ function TopMenu() {
           aria-label="simple tabs example"
           value={value}
           onChange={handleChange}
-          classes={{
-            indicator: classes.indicator,
-          }}
         >
           <Tab
             index={0}

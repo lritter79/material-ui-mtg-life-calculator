@@ -1,4 +1,4 @@
-import CategoryInterface from "../../CategoryInterface"
+import CategoryInterface from "../../Interfaces/CategoryInterface"
 
 const categories:CategoryInterface[] = [
     {id: 0, name:'EDH', startingLife: 40, maxCommanderDamage:21, isCommander:true},

@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@mui/styles";
 import { useEffect } from "react";
 import DieSvg from "./DieSvg";
 import LifeTotalTypography from "./LifeTotalTypography";

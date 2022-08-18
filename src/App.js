@@ -1,12 +1,11 @@
 import "./App.css";
-import { Container } from "@material-ui/core";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Container } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TopMenu from "./Components/TopMenu";
-import colorCodes from "./Components/LifeCounter/ColorCodes";
 import React, { useEffect, useRef } from "react";
 import LifeCounter from "./Components/LifeCounter/LifeCounter";
 import categories from "./Components/LifeCounter/Categories";
-import { brown } from "@material-ui/core/colors";
+import { grey, pink } from "@mui/material/colors";
 import useSessionStorage from "./Components/Functions/UseSessionStorage";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import DiceRoller from "./Components/DiceRoller/DiceRoller";
@@ -19,10 +18,53 @@ export const PlayersContext = React.createContext();
 const customTheme = createTheme({
   palette: {
     primary: {
-      main: colorCodes.green.hsl,
+      main: grey[900],
     },
     secondary: {
-      main: brown[500],
+      main: grey[50],
+    },
+    custom: {
+      main: "#c83814",
+    },
+  },
+  components: {
+    // Name of the component
+
+    MuiTab: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          fontSize: "1rem",
+          color: grey[50],
+          "&:hover": {
+            backgroundColor: grey[50],
+            color: grey[900],
+            "&.MuiTabs-indicator":{
+              backgroundColor: grey[50],
+            }
+          },
+          "&.Mui-selected":{
+            color: grey[50],
+            "&:hover": {
+              color: grey[900],
+              
+            },
+          }
+        },
+        
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          // Some CSS
+
+        },
+        indicator: {
+          backgroundColor: "#c83814",
+        },
+      },
     },
   },
 });
@@ -31,6 +73,13 @@ customTheme.typography.body2 = {
   fontSize: "1.5rem",
   fontWeight: 300,
 };
+
+customTheme.typography.h6 = {
+  margin: 0,
+  fontFamily: "Cursive,Helvetica,Arial,sans-serif",
+  fontWeight: 500,
+  fontSize: "1.25rem",
+}
 
 //customTheme.typography.h6 = {
 //fontSize: '1rem',

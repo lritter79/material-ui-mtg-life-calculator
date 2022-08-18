@@ -1,5 +1,5 @@
 import PlayerInterface from "../../PlayerInterface";
-import CategoryInterface from "../../CategoryInterface";
+import CategoryInterface from "../../Interfaces/CategoryInterface";
 
 function ResetGame(players:PlayerInterface[], selectedCategory: CategoryInterface) {
   return players.map((player) => ({

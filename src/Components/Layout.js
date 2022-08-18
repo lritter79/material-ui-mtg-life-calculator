@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
 import CustomDrawer from "./CustomDrawer";
 import TopMenu from "./TopMenu";
 import categories from "./LifeCounter/Categories";

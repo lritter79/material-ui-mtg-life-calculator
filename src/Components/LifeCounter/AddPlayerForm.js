@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { CategoryContext } from "../../App";
-import { Button, TextField, makeStyles } from "@material-ui/core";
+import { Button, TextField } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => {
   return {
