@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => {
         return `${color}`;
       },
     },
+    spaced: {
+      paddingTop:'10px',
+      paddingBottom:'10px',
+    }
   };
 });
 
@@ -42,16 +46,12 @@ function CommanderDamageCounter({ player, enemyPlayer }) {
   };
 
   return (
-    <Box>
+    <Box className={classes.spaced}>
       <TextField
         label={`${enemyPlayer.name}`}
         type="number"
-        className={classes.color}
         onChange={handleChange}
-        value={damage}
-        InputLabelProps={{
-          shrink: true,
-        }}
+        value={damage}      
       />
     </Box>
   );

@@ -125,8 +125,7 @@ function LifeCounterCard({ player, playerNumber, players, setPlayers }) {
 
   const getHeight = (numberOfPlayers) => {
     console.log(numberOfPlayers);
-    console.log("");
-    return 32 + 48 * (numberOfPlayers - 1);
+    return 40 + 70 * (numberOfPlayers - 1);
   };
 
   const handleDelete = (event) => {

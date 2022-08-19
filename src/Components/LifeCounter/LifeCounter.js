@@ -30,7 +30,6 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
   };
   const reset = useCallback(
     (event) => {
-      console.log("reset life totals");
       setPlayers((prev) => ResetGame(prev, selectedCategory));
     },
     [players]
@@ -52,8 +51,7 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
           aria-label="Select a game format button"
           aria-controls="menuFormatSelect"
           onClick={toggleIsOpen}
-          variant="contained"
-          color="primary"
+          variant="bold"
           id="btnSelectGameFormat"
         >
           {selectedCategory === null

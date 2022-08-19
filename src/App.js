@@ -11,9 +11,12 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import DiceRoller from "./Components/DiceRoller/DiceRoller";
 import ResetGame from "./Components/Functions/ResetGame";
 
+
 export const CategoryContext = React.createContext();
 
 export const PlayersContext = React.createContext();
+
+
 
 const customTheme = createTheme({
   palette: {
@@ -66,6 +69,30 @@ const customTheme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          // Some CSS
+          //fontFamily:"math",
+          borderRadius:'0px'
+        },
+      },
+      variants: [
+        {
+          props: { variant: "bold" },
+          style: {
+            fontWeight: "bold",
+            border: `4px solid black`,
+            color: "#c83814"
+          }
+        }
+      ],   
+      defaultProps: {
+        disableElevation: true,
+        disableFocusRipple: false,
+        disableRipple: false,
+      }
+    }
   },
 });
 
