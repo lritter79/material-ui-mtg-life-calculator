@@ -28,7 +28,6 @@ function AddPlayerForm({ players, setPlayers }) {
       };
       return obj;
     });
-    console.log(playerName);
     if (playerName.trim() === "") {
       setNameError(true);
     } else {
@@ -54,7 +53,7 @@ function AddPlayerForm({ players, setPlayers }) {
       <TextField
         variant="outlined"
         label="Player Name"
-        color="secondary"
+        color="custom"
         required
         value={playerName}
         onChange={(e) => setPlayerName(e.target.value)}

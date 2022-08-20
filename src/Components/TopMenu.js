@@ -23,7 +23,7 @@ function TopMenu() {
     setValue(newValue);
   };
   return (
-    <AppBar position="static">
+    <AppBar position="static" elevation={0}>
       <Toolbar className={`${classes.toolbarStyle}`}>
         <Typography variant="h6">
           MTG Life Calculator and Dice Roller

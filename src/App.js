@@ -10,13 +10,30 @@ import useSessionStorage from "./Components/Functions/UseSessionStorage";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import DiceRoller from "./Components/DiceRoller/DiceRoller";
 import ResetGame from "./Components/Functions/ResetGame";
+import { BorderColor } from "@mui/icons-material";
 
 
 export const CategoryContext = React.createContext();
 
 export const PlayersContext = React.createContext();
 
-
+const playerColors = {player_blue:{
+  main:'blue'
+},player_red:{
+  main:'red'
+},player_green:{
+  main:'green'
+},player_yellow:{
+  main:'yellow'
+},player_black:{
+  main:'black'
+},player_pink:{
+  main:'pink'
+},player_orange:{
+  main:'orange'
+},player_grey:{
+  main:'grey'
+},}
 
 const customTheme = createTheme({
   palette: {
@@ -28,7 +45,9 @@ const customTheme = createTheme({
     },
     custom: {
       main: "#c83814",
+      light:"grey"
     },
+    ... playerColors
   },
   components: {
     // Name of the component
@@ -40,6 +59,7 @@ const customTheme = createTheme({
           // Some CSS
           fontSize: "1rem",
           color: grey[50],
+          fontFamily: "Math,Helvetica,Arial,sans-serif",
           "&:hover": {
             backgroundColor: grey[50],
             color: grey[900],
@@ -62,7 +82,7 @@ const customTheme = createTheme({
       styleOverrides: {
         root: {
           // Some CSS
-
+          fontFamily: "Math,Helvetica,Arial,sans-serif",
         },
         indicator: {
           backgroundColor: "#c83814",
@@ -74,6 +94,7 @@ const customTheme = createTheme({
         root: {
           // Some CSS
           //fontFamily:"math",
+          fontFamily: "Math,Helvetica,Arial,sans-serif",
           borderRadius:'0px'
         },
       },
@@ -92,6 +113,34 @@ const customTheme = createTheme({
         disableFocusRipple: false,
         disableRipple: false,
       }
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          // Some CSS
+          //fontFamily:"math",
+          borderRadius:'0px'
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          fontFamily:"Math,Helvetica,Arial,sans-serif",
+          '&.MuiInputBase-formControl':{
+            borderRadius:'0px'
+          },
+        },
+       
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontFamily:"Math,Helvetica,Arial,sans-serif",
+        },
+       
+      },
     }
   },
 });
@@ -99,7 +148,15 @@ const customTheme = createTheme({
 customTheme.typography.body2 = {
   fontSize: "1.5rem",
   fontWeight: 300,
+  fontFamily: "Cursive,Helvetica,Arial,sans-serif",
 };
+
+customTheme.typography.h5 = {
+  fontSize: "1.25rem",
+  fontWeight: 200,
+  fontFamily: "Math,Helvetica,Arial,sans-serif",
+};
+
 
 customTheme.typography.h6 = {
   margin: 0,

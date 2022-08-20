@@ -8,6 +8,8 @@ import { useState, useContext, useCallback } from "react";
 import { PlayersContext } from "../../App";
 import { makeStyles } from "@mui/styles";
 import ResetGame from "../Functions/ResetGame";
+import { Tooltip } from "@mui/material";
+import Fade from '@mui/material/Fade';
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -47,17 +49,22 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
   return (
     <div>
       <div className={classes.center}>
-        <Button
-          aria-label="Select a game format button"
-          aria-controls="menuFormatSelect"
-          onClick={toggleIsOpen}
-          variant="bold"
-          id="btnSelectGameFormat"
-        >
-          {selectedCategory === null
-            ? "Select A Format"
-            : selectedCategory.name}
-        </Button>
+        <Tooltip title={<p>The variation of Magic: The Gathering you want to play</p>} 
+          TransitionComponent={Fade}
+        placement="left"
+        arrow>
+          <Button
+            aria-label="Select a game format button"
+            aria-controls="menuFormatSelect"
+            onClick={toggleIsOpen}
+            variant="bold"
+            id="btnSelectGameFormat"
+          >
+            {selectedCategory === null
+              ? "Select A Format"
+              : selectedCategory.name}
+          </Button>
+        </Tooltip>
       </div>
 
       <Menu

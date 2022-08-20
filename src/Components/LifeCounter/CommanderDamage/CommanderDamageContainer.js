@@ -47,7 +47,7 @@ function CommanderDamageContainer({ player }) {
       {" "}
       {players.length > 1 && (
         <Paper className={classes.content}>
-          <Typography variant="body2">Commander Damage</Typography>
+          <Typography variant="h5">Commander Damage</Typography>
           {commanderDamageTotals && (
             <Box>
               {commanderDamageTotals.map((commanderDamageObject, i) => (

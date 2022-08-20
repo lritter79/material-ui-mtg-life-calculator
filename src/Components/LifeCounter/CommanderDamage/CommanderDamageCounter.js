@@ -1,6 +1,7 @@
 import { Box, TextField } from "@mui/material";
 import { useState, useEffect } from "react";
 import { makeStyles } from "@mui/styles";
+import { styled } from '@mui/material/styles';
 import getColorFromPlayerNumber from "../../Functions/GetColorFromPlayerNumber";
 
 const useStyles = makeStyles((theme) => {
@@ -15,6 +16,12 @@ const useStyles = makeStyles((theme) => {
       paddingBottom:'10px',
     }
   };
+});
+
+const PlayerCmdrDamageTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: 'black',
+  },
 });
 
 function CommanderDamageCounter({ player, enemyPlayer }) {
@@ -47,11 +54,13 @@ function CommanderDamageCounter({ player, enemyPlayer }) {
 
   return (
     <Box className={classes.spaced}>
-      <TextField
+      <PlayerCmdrDamageTextField
         label={`${enemyPlayer.name}`}
         type="number"
+        color={`player_${color}`}
         onChange={handleChange}
-        value={damage}      
+        value={damage}  
+        size="small"
       />
     </Box>
   );

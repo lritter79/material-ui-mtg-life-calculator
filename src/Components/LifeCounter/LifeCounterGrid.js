@@ -20,7 +20,9 @@ function LifeCounterGrid({ setPlayers }) {
   //}
   //console.log(players)
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={1} sx={{
+      marginBottom:'10px'
+    }}>
       {trailSprings.map((spring, index) => (
         //added better responsivity
         <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
