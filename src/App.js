@@ -4,15 +4,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import TopMenu from "./Components/TopMenu";
 import React, { useEffect, useRef } from "react";
 import LifeCounter from "./Components/LifeCounter/LifeCounter";
-import categories from "./Components/LifeCounter/Categories";
 import { grey, pink } from "@mui/material/colors";
 import useSessionStorage from "./Components/Functions/UseSessionStorage";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import DiceRoller from "./Components/DiceRoller/DiceRoller";
 import ResetGame from "./Components/Functions/ResetGame";
-import { BorderColor } from "@mui/icons-material";
-
-
+import categories from "./Data/Categories";
 export const CategoryContext = React.createContext();
 
 export const PlayersContext = React.createContext();

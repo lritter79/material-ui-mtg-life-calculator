@@ -1,4 +1,6 @@
-const dice = [
+import DieInterface from "../Interfaces/DieInterface";
+
+const dice:DieInterface[] = [
   {
     id: 0,
     numberOfSides: 2,

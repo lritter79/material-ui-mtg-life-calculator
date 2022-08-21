@@ -1,5 +1,15 @@
+import FeatureFlags from "../../Data/FeatureFlags";
+import DieForm from "./DieForm";
+
 function DiceRoller() {
-  return <div>Work in progress</div>;
+  return (<>
+{  (FeatureFlags.DICEROLLER) ? 
+     <DieForm></DieForm>
+  :<div>not ready</div>}
+
+
+  </>
+    ) ;
 }
 
 export default DiceRoller;
