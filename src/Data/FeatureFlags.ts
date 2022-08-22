@@ -1,3 +1,3 @@
-const FeatureFlags = {DICEROLLER: false};
+const FeatureFlags = {DICEROLLER: true};
 
 export default FeatureFlags;

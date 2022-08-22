@@ -10,6 +10,7 @@ import { makeStyles } from "@mui/styles";
 import ResetGame from "../Functions/ResetGame";
 import { Tooltip } from "@mui/material";
 import Fade from '@mui/material/Fade';
+import CenteredContainer from '../Utility/CenteredContainer'
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -48,7 +49,7 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
 
   return (
     <div>
-      <div className={classes.center}>
+      <CenteredContainer>
         <Tooltip title={<p>The variation of Magic: The Gathering you want to play</p>} 
           TransitionComponent={Fade}
         placement="left"
@@ -65,7 +66,7 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
               : selectedCategory.name}
           </Button>
         </Tooltip>
-      </div>
+      </CenteredContainer>
 
       <Menu
         aria-expanded={Boolean(anchorEl)}
@@ -93,7 +94,7 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
         ))}
       </Menu>
       <AddPlayerForm setPlayers={setPlayers} players={players} />
-      <div className={classes.center}>
+      <CenteredContainer>
         {players.length >= 1 && (
           <Button
             color="primary"
@@ -106,7 +107,7 @@ function LifeCounter({ setPlayers, categories, setSelectedCategory }) {
             Reset Life Totals
           </Button>
         )}
-      </div>
+      </CenteredContainer>
 
       <LifeCounterGrid players={players} setPlayers={setPlayers} />
     </div>
