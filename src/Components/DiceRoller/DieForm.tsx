@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
-import React, { FormEventHandler, useState } from "react";
+import React, { FormEventHandler, useEffect, useState } from "react";
 import Dice from "../../Data/Dice";
 
 type dieFormProps = { setResult: React.Dispatch<React.SetStateAction<any>> };
@@ -30,6 +30,10 @@ export default function DieForm({ setResult }: dieFormProps) {
     setResult(total);
   };
 
+  /*   useEffect(() => {
+    console.log("form rendering");
+  }, []);
+ */
   return (
     <form noValidate autoComplete="off" onSubmit={rollDice}>
       <Grid container rowSpacing={1} direction="column">
@@ -66,7 +70,7 @@ export default function DieForm({ setResult }: dieFormProps) {
             >
               {Dice.map((die) => {
                 return (
-                  <MenuItem value={die.numberOfSides.toString()}>
+                  <MenuItem key={die.id} value={die.numberOfSides.toString()}>
                     {die.numberOfSides}
                   </MenuItem>
                 );

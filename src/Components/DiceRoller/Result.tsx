@@ -1,9 +1,14 @@
 import { Typography } from "@mui/material";
-import React from "react";
+import React, { memo, useEffect } from "react";
 
 type resultProps = {
   result: number | undefined;
 };
-export default function ({ result }: resultProps) {
+function Result({ result }: resultProps) {
+  /*     useEffect(() => {
+        console.log("result renderinf");
+      }, []); */
   return <Typography variant="body2">{result}</Typography>;
 }
+
+export default memo(Result);
